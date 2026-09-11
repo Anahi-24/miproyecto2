@@ -1,0 +1,487 @@
+/* ================================
+   CONTENEDOR PRINCIPAL
+================================ */
+
+.clima-container {
+  min-height: 100vh;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 45px 25px;
+  box-sizing: border-box;
+}
+
+
+/* ================================
+   BOTÓN VOLVER
+================================ */
+
+.btn-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  border: none;
+  background: transparent;
+
+  color: #4b5563;
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  padding: 8px 4px;
+  margin-bottom: 22px;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-volver:hover {
+  color: #111827;
+  transform: translateX(-4px);
+}
+
+
+/* ================================
+   TARJETA PRINCIPAL
+================================ */
+
+.clima-card {
+  position: relative;
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 28px;
+
+  padding: 38px;
+
+  box-shadow:
+    0 20px 50px rgba(15, 23, 42, 0.08),
+    0 4px 12px rgba(15, 23, 42, 0.04);
+
+  animation: aparecer 0.5s ease;
+}
+
+/* Decoración sutil de la tarjeta */
+
+.clima-card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 280px;
+  height: 280px;
+
+  top: -150px;
+  right: -100px;
+
+  border-radius: 50%;
+
+  background: rgba(219, 234, 254, 0.35);
+
+  pointer-events: none;
+}
+
+
+/* ================================
+   ENCABEZADO
+================================ */
+
+.clima-header {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 30px;
+
+  margin-bottom: 35px;
+}
+
+.etiqueta {
+  margin: 0 0 8px;
+
+  color: #64748b;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.clima-header h1 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.1;
+
+  letter-spacing: -1px;
+}
+
+.ubicacion {
+  margin: 9px 0 0;
+
+  color: #64748b;
+
+  font-size: 15px;
+}
+
+
+/* ================================
+   BANDERA
+================================ */
+
+.bandera {
+  width: 105px;
+  height: 70px;
+
+  object-fit: cover;
+
+  border-radius: 12px;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow:
+    0 8px 20px rgba(15, 23, 42, 0.12);
+
+  background: #f8fafc;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.bandera:hover {
+  transform: translateY(-3px) scale(1.03);
+
+  box-shadow:
+    0 12px 25px rgba(15, 23, 42, 0.16);
+}
+
+
+/* ================================
+   CLIMA PRINCIPAL
+================================ */
+
+.clima-principal {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+
+  gap: 25px;
+
+  min-height: 145px;
+
+  padding: 10px 0 30px;
+
+  border-bottom: 1px solid #eef2f7;
+}
+
+.icono-clima {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 110px;
+  height: 110px;
+
+  font-size: 75px;
+
+  border-radius: 28px;
+
+  background: linear-gradient(
+    145deg,
+    #f8fafc,
+    #eef4ff
+  );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 10px 25px rgba(59, 130, 246, 0.08);
+}
+
+.temperatura {
+  color: #111827;
+
+  font-size: 64px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing: -2px;
+}
+
+.descripcion {
+  margin: 9px 0 0;
+
+  color: #64748b;
+
+  font-size: 17px;
+  font-weight: 500;
+}
+
+
+/* ================================
+   DATOS DEL CLIMA
+================================ */
+
+.datos-clima {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 16px;
+
+  margin-top: 25px;
+}
+
+.dato {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  min-height: 72px;
+
+  padding: 17px 20px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #edf1f5;
+  border-radius: 17px;
+
+  background: #f8fafc;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.dato:hover {
+  transform: translateY(-3px);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 10px 25px rgba(15, 23, 42, 0.07);
+}
+
+.dato-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 45px;
+  height: 45px;
+
+  flex-shrink: 0;
+
+  border-radius: 13px;
+
+  background: white;
+
+  font-size: 23px;
+
+  box-shadow:
+    0 4px 10px rgba(15, 23, 42, 0.06);
+}
+
+.dato-titulo {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #64748b;
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.dato strong {
+  display: block;
+
+  color: #111827;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+
+/* ================================
+   ESTADOS
+================================ */
+
+.estado-mensaje {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 300px;
+
+  color: #64748b;
+
+  text-align: center;
+}
+
+.estado-mensaje p {
+  margin: 10px 0 0;
+
+  font-size: 16px;
+}
+
+.error {
+  color: #b42318;
+}
+
+
+/* ================================
+   SPINNER
+================================ */
+
+.spinner {
+  width: 38px;
+  height: 38px;
+
+  border: 4px solid #e5e7eb;
+  border-top-color: #2563eb;
+
+  border-radius: 50%;
+
+  animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ================================
+   ANIMACIÓN TARJETA
+================================ */
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 700px) {
+
+  .clima-container {
+    padding: 30px 16px;
+  }
+
+  .clima-card {
+    padding: 25px 20px;
+
+    border-radius: 22px;
+  }
+
+  .clima-header {
+    align-items: flex-start;
+
+    margin-bottom: 25px;
+  }
+
+  .clima-header h1 {
+    font-size: 30px;
+  }
+
+  .bandera {
+    width: 82px;
+    height: 55px;
+  }
+
+  .clima-principal {
+    gap: 18px;
+
+    min-height: 120px;
+  }
+
+  .icono-clima {
+    width: 85px;
+    height: 85px;
+
+    font-size: 58px;
+
+    border-radius: 22px;
+  }
+
+  .temperatura {
+    font-size: 48px;
+  }
+
+  .descripcion {
+    font-size: 15px;
+  }
+
+  .datos-clima {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ================================
+   MÓVIL PEQUEÑO
+================================ */
+
+@media (max-width: 430px) {
+
+  .clima-header {
+    flex-direction: column;
+  }
+
+  .bandera {
+    width: 90px;
+    height: 60px;
+  }
+
+  .clima-principal {
+    gap: 14px;
+  }
+
+  .icono-clima {
+    width: 70px;
+    height: 70px;
+
+    font-size: 45px;
+
+    border-radius: 18px;
+  }
+
+  .temperatura {
+    font-size: 40px;
+  }
+
+  .dato {
+    padding: 15px;
+  }
+}

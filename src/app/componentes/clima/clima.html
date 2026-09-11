@@ -1,0 +1,183 @@
+<div class="clima-container">
+
+  <button
+    type="button"
+    class="btn-volver"
+    (click)="volver()">
+    ← Volver
+  </button>
+
+  @if (cargando()) {
+
+    <div class="estado-mensaje cargando">
+
+      <div class="spinner"></div>
+
+      <p>
+        Consultando información del clima...
+      </p>
+
+    </div>
+
+  }
+
+  @if (error()) {
+
+    <div class="estado-mensaje error">
+
+      <p>
+        ⚠️ {{ error() }}
+      </p>
+
+    </div>
+
+  }
+
+  @if (!cargando() && !error() && clima(); as c) {
+
+    <div class="clima-card">
+
+      @if (pais(); as p) {
+
+        <div class="clima-header">
+
+          <div>
+
+            <p class="etiqueta">
+              CLIMA ACTUAL
+            </p>
+
+            <h1>
+              {{ nombreEnEspanol(p) }}
+            </h1>
+
+            @if (ubicacion(); as u) {
+
+              <p class="ubicacion">
+                {{ u.name }}
+                @if (u.country) {
+                  · {{ u.country }}
+                }
+              </p>
+
+            }
+
+          </div>
+
+          <img
+            [src]="p.flag.url_png"
+            [alt]="p.flag.description || 'Bandera de ' + nombreEnEspanol(p)"
+            class="bandera"
+          />
+
+        </div>
+
+      }
+
+      <div class="clima-principal">
+
+        <div class="icono-clima">
+
+          {{ obtenerIconoClima(c.current.weather_code) }}
+
+        </div>
+
+        <div>
+
+          <div class="temperatura">
+
+            {{ c.current.temperature_2m | number:'1.0-1' }}°C
+
+          </div>
+
+          <p class="descripcion">
+
+            {{ obtenerDescripcionClima(c.current.weather_code) }}
+
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="datos-clima">
+
+        <div class="dato">
+
+          <span class="dato-icono">💧</span>
+
+          <div>
+
+            <span class="dato-titulo">
+              Humedad
+            </span>
+
+            <strong>
+              {{ c.current.relative_humidity_2m }}%
+            </strong>
+
+          </div>
+
+        </div>
+
+        <div class="dato">
+
+          <span class="dato-icono">🌡️</span>
+
+          <div>
+
+            <span class="dato-titulo">
+              Sensación térmica
+            </span>
+
+            <strong>
+              {{ c.current.apparent_temperature | number:'1.0-1' }}°C
+            </strong>
+
+          </div>
+
+        </div>
+
+        <div class="dato">
+
+          <span class="dato-icono">💨</span>
+
+          <div>
+
+            <span class="dato-titulo">
+              Viento
+            </span>
+
+            <strong>
+              {{ c.current.wind_speed_10m }} km/h
+            </strong>
+
+          </div>
+
+        </div>
+
+        <div class="dato">
+
+          <span class="dato-icono">🌧️</span>
+
+          <div>
+
+            <span class="dato-titulo">
+              Precipitación
+            </span>
+
+            <strong>
+              {{ c.current.precipitation }} mm
+            </strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  }
+
+</div>

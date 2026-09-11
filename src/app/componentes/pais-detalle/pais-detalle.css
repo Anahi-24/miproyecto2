@@ -1,0 +1,316 @@
+/* =========================================
+   PÁGINA DE DETALLE
+========================================= */
+
+.detalle-container {
+  min-height: 100vh;
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 35px 25px 60px;
+
+  background-image:
+    linear-gradient(
+      rgba(248, 251, 255, 0.86),
+      rgba(248, 251, 255, 0.86)
+    ),
+    url('/mundo-fondo.png');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
+/* =========================================
+   BOTÓN VOLVER
+========================================= */
+
+.btn-volver {
+  display: inline-flex;
+
+  align-items: center;
+  gap: 7px;
+
+  padding: 9px 15px;
+
+  border: 1px solid #d5e0eb;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #37516c;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 3px 10px rgba(31, 65, 98, 0.05);
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-volver:hover {
+  background: #f4f8fc;
+
+  border-color: #c4d3e2;
+
+  transform: translateX(-2px);
+}
+
+
+/* =========================================
+   TARJETA
+========================================= */
+
+.detalle-card {
+  width: 100%;
+  max-width: 700px;
+
+  margin: 35px auto 0;
+
+  padding: 35px;
+
+  box-sizing: border-box;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  border: 1px solid rgba(225, 234, 243, 0.95);
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 10px 35px rgba(31, 65, 98, 0.08);
+
+  text-align: center;
+}
+
+
+/* =========================================
+   BANDERA
+========================================= */
+
+.detalle-bandera {
+  display: block;
+
+  width: 100%;
+
+  max-width: 520px;
+
+  height: auto;
+
+  margin: 0 auto 28px;
+
+  object-fit: contain;
+
+  border-radius: 14px;
+
+  border: 1px solid #e1e8ef;
+
+  box-shadow:
+    0 8px 25px rgba(31, 65, 98, 0.08);
+}
+
+
+/* =========================================
+   TÍTULO
+========================================= */
+
+.detalle-card h1 {
+  margin: 0;
+
+  color: #102a4c;
+
+  font-size: 32px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.8px;
+}
+
+
+/* =========================================
+   NOMBRE OFICIAL
+========================================= */
+
+.detalle-oficial {
+  margin: 8px 0 28px;
+
+  color: #71839a;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   LISTA DE DATOS
+========================================= */
+
+.detalle-lista {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 12px;
+
+  margin: 0;
+
+  text-align: left;
+}
+
+
+/* =========================================
+   ITEM
+========================================= */
+
+.detalle-item {
+  padding: 16px;
+
+  background: #f8fbff;
+
+  border: 1px solid #e4edf6;
+
+  border-radius: 12px;
+}
+
+
+/* =========================================
+   ETIQUETA
+========================================= */
+
+.detalle-item dt {
+  margin-bottom: 6px;
+
+  color: #7b8fa4;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.4px;
+}
+
+
+/* =========================================
+   VALOR
+========================================= */
+
+.detalle-item dd {
+  margin: 0;
+
+  color: #19324d;
+
+  font-size: 15px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================
+   CARGANDO / ERROR
+========================================= */
+
+.estado-mensaje {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 180px;
+
+  text-align: center;
+}
+
+.estado-mensaje p {
+  margin: 10px 0 0;
+
+  color: #8a9caf;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   SPINNER
+========================================= */
+
+.spinner {
+  width: 30px;
+  height: 30px;
+
+  border: 3px solid #dbe5ef;
+
+  border-top-color: #1769e0;
+
+  border-radius: 50%;
+
+  animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.error p {
+  color: #c0392b;
+}
+
+
+/* =========================================
+   MÓVIL
+========================================= */
+
+@media (max-width: 600px) {
+
+  .detalle-container {
+    padding: 25px 18px 45px;
+
+    background-attachment: scroll;
+  }
+
+  .detalle-card {
+    margin-top: 25px;
+
+    padding: 22px 18px;
+
+    border-radius: 17px;
+  }
+
+  .detalle-bandera {
+    max-width: 100%;
+
+    margin-bottom: 22px;
+  }
+
+  .detalle-card h1 {
+    font-size: 27px;
+  }
+
+  .detalle-lista {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-volver {
+    padding: 8px 13px;
+  }
+}

@@ -1,0 +1,54 @@
+<div class="detalle-container">
+  <button type="button" class="btn-volver" (click)="volver()">← Volver</button>
+
+  @if (cargando()) {
+    <div class="estado-mensaje cargando">
+      <div class="spinner"></div>
+      <p>Cargando país...</p>
+    </div>
+  }
+
+  @if (error()) {
+    <div class="estado-mensaje error">
+      <p>⚠️ {{ error() }}</p>
+    </div>
+  }
+
+  @if (!cargando() && !error() && pais(); as p) {
+    <div class="detalle-card">
+      <img
+        [src]="p.flag.url_png"
+        [alt]="p.flag.description || 'Bandera de ' + p.names.common"
+        class="detalle-bandera"
+      />
+      <h1>{{ nombreEnEspanol(p) }}</h1>
+      <p class="detalle-oficial">{{ p.names.official }}</p>
+
+      <dl class="detalle-lista">
+        @if (p.capitals && p.capitals.length > 0) {
+          <div class="detalle-item">
+            <dt>Capital</dt>
+            <dd>{{ p.capitals[0].name }}</dd>
+          </div>
+        }
+
+        <div class="detalle-item">
+          <dt>Región</dt>
+          <dd>{{ p.subregion ? p.region + ' (' + p.subregion + ')' : p.region }}</dd>
+        </div>
+
+        @if (p.population) {
+          <div class="detalle-item">
+            <dt>Población</dt>
+            <dd>{{ p.population | number }}</dd>
+          </div>
+        }
+
+        <div class="detalle-item">
+          <dt>Códigos</dt>
+          <dd>{{ p.codes.alpha_2 }} / {{ p.codes.alpha_3 }}</dd>
+        </div>
+      </dl>
+    </div>
+  }
+</div>

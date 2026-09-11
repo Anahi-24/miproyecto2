@@ -1,0 +1,313 @@
+<div class="buscador-container">
+
+  <!-- =========================================
+       LOGO
+  ========================================== -->
+
+  <div class="logo-paises">
+    <svg viewBox="0 0 120 120" aria-hidden="true">
+
+      <!-- Globo -->
+      <circle
+        cx="50"
+        cy="50"
+        r="38"
+        class="globo-circulo"
+      />
+
+      <!-- Continentes -->
+      <path
+        d="M23 37
+           C29 27 39 21 49 21
+           L56 25
+           L53 31
+           L45 32
+           L41 38
+           L32 39
+           L27 45
+           Z"
+        class="globo-tierra"
+      />
+
+      <path
+        d="M55 35
+           L66 30
+           L77 36
+           L82 46
+           L76 52
+           L67 49
+           L62 55
+           L55 49
+           L58 42
+           Z"
+        class="globo-tierra"
+      />
+
+      <path
+        d="M40 54
+           L49 56
+           L54 67
+           L49 78
+           L42 74
+           L39 65
+           L34 61
+           Z"
+        class="globo-tierra"
+      />
+
+      <!-- Lupa del logo -->
+      <circle
+        cx="84"
+        cy="84"
+        r="14"
+        class="logo-lupa"
+      />
+
+      <line
+        x1="94"
+        y1="94"
+        x2="106"
+        y2="106"
+        class="logo-lupa-line"
+      />
+
+    </svg>
+  </div>
+
+
+  <!-- =========================================
+       ENCABEZADO
+  ========================================== -->
+
+  <header class="buscador-header">
+
+    <h1>Buscador de Países</h1>
+
+    <p>
+      Escribe el nombre de un país para ver sus datos al instante
+    </p>
+
+  </header>
+
+
+  <!-- =========================================
+       BUSCADOR
+  ========================================== -->
+
+  <div class="search-box">
+
+    <!-- Lupa izquierda -->
+    <svg
+      class="search-icon"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <circle
+        cx="10.5"
+        cy="10.5"
+        r="6.5"
+      ></circle>
+
+      <line
+        x1="16"
+        y1="16"
+        x2="21"
+        y2="21"
+      ></line>
+    </svg>
+
+
+    <input
+      type="text"
+      [ngModel]="termino()"
+      (ngModelChange)="onInputChange($event)"
+      placeholder="Ej: Honduras, España, Japón..."
+      class="search-input"
+    />
+
+  </div>
+
+
+  <!-- =========================================
+       CARGANDO
+  ========================================== -->
+
+  @if (cargando()) {
+
+    <div class="estado-mensaje cargando">
+
+      <div class="spinner"></div>
+
+      <p>Cargando países...</p>
+
+    </div>
+
+  }
+
+
+  <!-- =========================================
+       ERROR
+  ========================================== -->
+
+  @if (error()) {
+
+    <div class="estado-mensaje error">
+
+      <svg
+        class="error-icon"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="9"
+        ></circle>
+
+        <line
+          x1="12"
+          y1="7"
+          x2="12"
+          y2="13"
+        ></line>
+
+        <circle
+          cx="12"
+          cy="17"
+          r="1"
+          fill="currentColor"
+          stroke="none"
+        ></circle>
+      </svg>
+
+      <p>{{ error() }}</p>
+
+    </div>
+
+  }
+
+
+  <!-- =========================================
+       RESULTADOS
+  ========================================== -->
+
+  @if (!cargando() && !error() && paises().length > 0) {
+
+    <div class="resultados-lista">
+
+      @for (pais of paises(); track pais.codes.alpha_3) {
+
+        <div class="pais-fila">
+
+          <img
+            [src]="pais.flag.url_png"
+            [alt]="pais.flag.description || 'Bandera de ' + pais.names.common"
+            class="pais-bandera"
+          />
+
+
+          <h3 class="pais-nombre">
+            {{ nombreEnEspanol(pais) }}
+          </h3>
+
+
+          <div class="pais-acciones">
+
+            <button
+              type="button"
+              class="btn-accion btn-detalles"
+              (click)="verDetalles(pais)"
+            >
+              Detalles
+            </button>
+
+
+            <button
+              type="button"
+              class="btn-accion btn-clima"
+              (click)="verClima(pais)"
+            >
+              Clima
+            </button>
+
+          </div>
+
+        </div>
+
+      }
+
+    </div>
+
+  }
+
+
+  <!-- =========================================
+       SIN RESULTADOS
+  ========================================== -->
+
+  @if (!cargando() && !error() && paises().length === 0 && termino()) {
+
+    <div class="estado-mensaje vacio sin-resultados">
+
+      <!-- Icono lupa -->
+      <svg
+        class="estado-icon lupa-estado"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <circle
+          cx="10.5"
+          cy="10.5"
+          r="6.5"
+        ></circle>
+
+        <line
+          x1="16"
+          y1="16"
+          x2="21"
+          y2="21"
+        ></line>
+      </svg>
+
+      <p>No se encontraron países</p>
+
+    </div>
+
+  }
+
+
+  <!-- =========================================
+       MENSAJE INICIAL
+  ========================================== -->
+
+  @if (!cargando() && !error() && !termino()) {
+
+    <div class="estado-mensaje vacio mensaje-inicial">
+
+      <!-- Lupa grande -->
+      <svg
+        class="estado-icon lupa-grande"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <circle
+          cx="10.5"
+          cy="10.5"
+          r="6.5"
+        ></circle>
+
+        <line
+          x1="16"
+          y1="16"
+          x2="21"
+          y2="21"
+        ></line>
+      </svg>
+
+      <p>Empieza a escribir para ver resultados</p>
+
+    </div>
+
+  }
+
+</div>

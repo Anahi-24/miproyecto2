@@ -1,12 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { BuscadorPaisesComponent } from './componentes/buscador-paises/buscador-paises';
 
 @Component({
+  imports: [RouterOutlet, BuscadorPaisesComponent],
   selector: 'app-root',
-  imports: [RouterOutlet],
+  styleUrl: './app.css',
   templateUrl: './app.html',
-  styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('proyecto_paises');
+  protected readonly title = signal('proyectopaises');
 }
