@@ -1,9 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { BuscadorPaisesComponent } from './componentes/buscador-paises/buscador-paises';
 
 @Component({
-  imports: [RouterOutlet, BuscadorPaisesComponent],
+  imports: [RouterOutlet],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

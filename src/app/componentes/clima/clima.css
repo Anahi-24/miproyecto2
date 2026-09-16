@@ -4,10 +4,23 @@
 
 .clima-container {
   min-height: 100vh;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 45px 25px;
+  width: 100%;
+
   box-sizing: border-box;
+
+  padding: 22px 25px 60px;
+
+  background-image:
+    linear-gradient(
+      rgba(248, 251, 255, 0.86),
+      rgba(248, 251, 255, 0.86)
+    ),
+    url('/mundo-fondo.png');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 
@@ -17,29 +30,40 @@
 
 .btn-volver {
   display: inline-flex;
+
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 
-  border: none;
-  background: transparent;
+  padding: 8px 13px;
 
-  color: #4b5563;
-  font-size: 15px;
+  border: 1px solid #d5e0eb;
+
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.95);
+
+  color: #37516c;
+
+  font-size: 13px;
   font-weight: 600;
 
   cursor: pointer;
 
-  padding: 8px 4px;
-  margin-bottom: 22px;
+  box-shadow:
+    0 3px 10px rgba(31, 65, 98, 0.05);
 
   transition:
-    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
     transform 0.2s ease;
 }
 
 .btn-volver:hover {
-  color: #111827;
-  transform: translateX(-4px);
+  background: #f4f8fc;
+
+  border-color: #c4d3e2;
+
+  transform: translateX(-2px);
 }
 
 
@@ -49,23 +73,34 @@
 
 .clima-card {
   position: relative;
+
+  width: 100%;
+  max-width: 760px;
+
+  margin: 30px auto 0;
+
+  box-sizing: border-box;
+
   overflow: hidden;
 
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(255, 255, 255, 0.94);
 
-  border: 1px solid rgba(226, 232, 240, 0.8);
-  border-radius: 28px;
+  border: 1px solid rgba(225, 234, 243, 0.95);
 
-  padding: 38px;
+  border-radius: 20px;
+
+  padding: 32px;
 
   box-shadow:
-    0 20px 50px rgba(15, 23, 42, 0.08),
-    0 4px 12px rgba(15, 23, 42, 0.04);
+    0 10px 35px rgba(31, 65, 98, 0.08);
 
   animation: aparecer 0.5s ease;
 }
 
-/* Decoración sutil de la tarjeta */
+
+/* ================================
+   DECORACIÓN DE LA TARJETA
+================================ */
 
 .clima-card::before {
   content: "";
@@ -92,46 +127,55 @@
 
 .clima-header {
   position: relative;
+
   z-index: 1;
 
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
 
   gap: 30px;
 
-  margin-bottom: 35px;
+  margin-bottom: 30px;
 }
 
+
 .etiqueta {
-  margin: 0 0 8px;
+  margin: 0 0 7px;
 
   color: #64748b;
 
-  font-size: 12px;
+  font-size: 11px;
+
   font-weight: 800;
 
   letter-spacing: 1.5px;
 }
+
 
 .clima-header h1 {
   margin: 0;
 
   color: #111827;
 
-  font-size: 38px;
+  font-size: 36px;
+
   font-weight: 800;
+
   line-height: 1.1;
 
   letter-spacing: -1px;
 }
 
+
 .ubicacion {
-  margin: 9px 0 0;
+  margin: 8px 0 0;
 
   color: #64748b;
 
-  font-size: 15px;
+  font-size: 14px;
 }
 
 
@@ -140,17 +184,18 @@
 ================================ */
 
 .bandera {
-  width: 105px;
-  height: 70px;
+  width: 95px;
+
+  height: 64px;
 
   object-fit: cover;
 
-  border-radius: 12px;
+  border-radius: 11px;
 
   border: 1px solid #e5e7eb;
 
   box-shadow:
-    0 8px 20px rgba(15, 23, 42, 0.12);
+    0 7px 18px rgba(15, 23, 42, 0.10);
 
   background: #f8fafc;
 
@@ -159,11 +204,12 @@
     box-shadow 0.25s ease;
 }
 
+
 .bandera:hover {
   transform: translateY(-3px) scale(1.03);
 
   box-shadow:
-    0 12px 25px rgba(15, 23, 42, 0.16);
+    0 11px 23px rgba(15, 23, 42, 0.14);
 }
 
 
@@ -173,31 +219,43 @@
 
 .clima-principal {
   position: relative;
+
   z-index: 1;
 
   display: flex;
+
   align-items: center;
 
-  gap: 25px;
+  gap: 23px;
 
-  min-height: 145px;
+  min-height: 140px;
 
-  padding: 10px 0 30px;
+  padding: 8px 0 28px;
 
   border-bottom: 1px solid #eef2f7;
 }
 
+
+/* ================================
+   ICONO DEL CLIMA
+================================ */
+
 .icono-clima {
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
-  width: 110px;
-  height: 110px;
+  width: 105px;
 
-  font-size: 75px;
+  height: 105px;
 
-  border-radius: 28px;
+  flex-shrink: 0;
+
+  font-size: 70px;
+
+  border-radius: 26px;
 
   background: linear-gradient(
     145deg,
@@ -207,13 +265,19 @@
 
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    0 10px 25px rgba(59, 130, 246, 0.08);
+    0 9px 23px rgba(59, 130, 246, 0.08);
 }
+
+
+/* ================================
+   TEMPERATURA
+================================ */
 
 .temperatura {
   color: #111827;
 
-  font-size: 64px;
+  font-size: 60px;
+
   font-weight: 800;
 
   line-height: 1;
@@ -221,12 +285,18 @@
   letter-spacing: -2px;
 }
 
+
+/* ================================
+   DESCRIPCIÓN
+================================ */
+
 .descripcion {
-  margin: 9px 0 0;
+  margin: 8px 0 0;
 
   color: #64748b;
 
-  font-size: 17px;
+  font-size: 16px;
+
   font-weight: 500;
 }
 
@@ -237,31 +307,39 @@
 
 .datos-clima {
   position: relative;
+
   z-index: 1;
 
   display: grid;
 
   grid-template-columns: repeat(2, 1fr);
 
-  gap: 16px;
+  gap: 13px;
 
-  margin-top: 25px;
+  margin-top: 23px;
 }
+
+
+/* ================================
+   DATO
+================================ */
 
 .dato {
   display: flex;
+
   align-items: center;
 
-  gap: 15px;
+  gap: 14px;
 
-  min-height: 72px;
+  min-height: 68px;
 
-  padding: 17px 20px;
+  padding: 15px 18px;
 
   box-sizing: border-box;
 
   border: 1px solid #edf1f5;
-  border-radius: 17px;
+
+  border-radius: 15px;
 
   background: #f8fafc;
 
@@ -271,52 +349,73 @@
     background 0.2s ease;
 }
 
+
 .dato:hover {
   transform: translateY(-3px);
 
   background: #ffffff;
 
   box-shadow:
-    0 10px 25px rgba(15, 23, 42, 0.07);
+    0 9px 22px rgba(15, 23, 42, 0.07);
 }
+
+
+/* ================================
+   ICONO DEL DATO
+================================ */
 
 .dato-icono {
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
-  width: 45px;
-  height: 45px;
+  width: 43px;
+
+  height: 43px;
 
   flex-shrink: 0;
 
-  border-radius: 13px;
+  border-radius: 12px;
 
-  background: white;
+  background: #ffffff;
 
-  font-size: 23px;
+  font-size: 22px;
 
   box-shadow:
     0 4px 10px rgba(15, 23, 42, 0.06);
 }
 
+
+/* ================================
+   TÍTULO DEL DATO
+================================ */
+
 .dato-titulo {
   display: block;
 
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 
   color: #64748b;
 
-  font-size: 12px;
+  font-size: 11px;
+
   font-weight: 500;
 }
+
+
+/* ================================
+   VALOR
+================================ */
 
 .dato strong {
   display: block;
 
   color: #111827;
 
-  font-size: 17px;
+  font-size: 16px;
+
   font-weight: 700;
 }
 
@@ -327,8 +426,11 @@
 
 .estado-mensaje {
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
   justify-content: center;
 
   min-height: 300px;
@@ -338,11 +440,13 @@
   text-align: center;
 }
 
+
 .estado-mensaje p {
   margin: 10px 0 0;
 
   font-size: 16px;
 }
+
 
 .error {
   color: #b42318;
@@ -355,15 +459,18 @@
 
 .spinner {
   width: 38px;
+
   height: 38px;
 
   border: 4px solid #e5e7eb;
+
   border-top-color: #2563eb;
 
   border-radius: 50%;
 
   animation: girar 0.8s linear infinite;
 }
+
 
 @keyframes girar {
   to {
@@ -377,15 +484,19 @@
 ================================ */
 
 @keyframes aparecer {
+
   from {
     opacity: 0;
+
     transform: translateY(15px);
   }
 
   to {
     opacity: 1;
+
     transform: translateY(0);
   }
+
 }
 
 
@@ -396,14 +507,20 @@
 @media (max-width: 700px) {
 
   .clima-container {
-    padding: 30px 16px;
+    padding: 18px 16px 45px;
+
+    background-attachment: scroll;
   }
+
 
   .clima-card {
-    padding: 25px 20px;
+    margin-top: 22px;
 
-    border-radius: 22px;
+    padding: 24px 20px;
+
+    border-radius: 18px;
   }
+
 
   .clima-header {
     align-items: flex-start;
@@ -411,14 +528,18 @@
     margin-bottom: 25px;
   }
 
+
   .clima-header h1 {
     font-size: 30px;
   }
 
+
   .bandera {
     width: 82px;
+
     height: 55px;
   }
+
 
   .clima-principal {
     gap: 18px;
@@ -426,8 +547,10 @@
     min-height: 120px;
   }
 
+
   .icono-clima {
     width: 85px;
+
     height: 85px;
 
     font-size: 58px;
@@ -435,17 +558,21 @@
     border-radius: 22px;
   }
 
+
   .temperatura {
     font-size: 48px;
   }
+
 
   .descripcion {
     font-size: 15px;
   }
 
+
   .datos-clima {
     grid-template-columns: 1fr;
   }
+
 }
 
 
@@ -459,17 +586,22 @@
     flex-direction: column;
   }
 
+
   .bandera {
     width: 90px;
+
     height: 60px;
   }
+
 
   .clima-principal {
     gap: 14px;
   }
 
+
   .icono-clima {
     width: 70px;
+
     height: 70px;
 
     font-size: 45px;
@@ -477,11 +609,14 @@
     border-radius: 18px;
   }
 
+
   .temperatura {
     font-size: 40px;
   }
 
+
   .dato {
     padding: 15px;
   }
+
 }
