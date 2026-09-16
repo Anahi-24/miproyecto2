@@ -1,79 +1,15 @@
-<div class="buscador-container">
+<div class="buscador-container" [class.hay-resultados]="termino()">
 
   <!-- =========================================
        LOGO
   ========================================== -->
 
   <div class="logo-paises">
-    <svg viewBox="0 0 120 120" aria-hidden="true">
-
-      <!-- Globo -->
-      <circle
-        cx="50"
-        cy="50"
-        r="38"
-        class="globo-circulo"
-      />
-
-      <!-- Continentes -->
-      <path
-        d="M23 37
-           C29 27 39 21 49 21
-           L56 25
-           L53 31
-           L45 32
-           L41 38
-           L32 39
-           L27 45
-           Z"
-        class="globo-tierra"
-      />
-
-      <path
-        d="M55 35
-           L66 30
-           L77 36
-           L82 46
-           L76 52
-           L67 49
-           L62 55
-           L55 49
-           L58 42
-           Z"
-        class="globo-tierra"
-      />
-
-      <path
-        d="M40 54
-           L49 56
-           L54 67
-           L49 78
-           L42 74
-           L39 65
-           L34 61
-           Z"
-        class="globo-tierra"
-      />
-
-      <!-- Lupa del logo -->
-      <circle
-        cx="84"
-        cy="84"
-        r="14"
-        class="logo-lupa"
-      />
-
-      <line
-        x1="94"
-        y1="94"
-        x2="106"
-        y2="106"
-        class="logo-lupa-line"
-      />
-
-    </svg>
-  </div>
-
+  <img
+    src="/logo_planeta_girando_mas_realista.gif"
+    alt="Planeta Tierra"
+  />
+</div>
 
   <!-- =========================================
        ENCABEZADO
@@ -96,36 +32,69 @@
 
   <div class="search-box">
 
-    <!-- Lupa izquierda -->
-    <svg
-      class="search-icon"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
+  <!-- Lupa -->
+  <svg
+    class="search-icon"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <circle
+      cx="10.5"
+      cy="10.5"
+      r="6.5"
+    ></circle>
+
+    <line
+      x1="16"
+      y1="16"
+      x2="21"
+      y2="21"
+    ></line>
+  </svg>
+
+
+  <!-- Input -->
+  <input
+    type="text"
+    [ngModel]="termino()"
+    (ngModelChange)="onInputChange($event)"
+    placeholder="Ej: Honduras, España, Japón..."
+    class="search-input"
+  />
+
+
+  <!-- Botón limpiar -->
+  @if (termino()) {
+
+    <button
+      type="button"
+      class="btn-limpiar"
+      (click)="onInputChange('')"
+      aria-label="Limpiar búsqueda"
     >
-      <circle
-        cx="10.5"
-        cy="10.5"
-        r="6.5"
-      ></circle>
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <line
+          x1="7"
+          y1="7"
+          x2="17"
+          y2="17"
+        ></line>
 
-      <line
-        x1="16"
-        y1="16"
-        x2="21"
-        y2="21"
-      ></line>
-    </svg>
+        <line
+          x1="17"
+          y1="7"
+          x2="7"
+          y2="17"
+        ></line>
+      </svg>
+    </button>
 
+  }
 
-    <input
-      type="text"
-      [ngModel]="termino()"
-      (ngModelChange)="onInputChange($event)"
-      placeholder="Ej: Honduras, España, Japón..."
-      class="search-input"
-    />
-
-  </div>
+</div>
 
 
   <!-- =========================================
@@ -213,22 +182,48 @@
 
           <div class="pais-acciones">
 
-            <button
-              type="button"
-              class="btn-accion btn-detalles"
-              (click)="verDetalles(pais)"
+           <button
+            type="button"
+            class="btn-accion btn-detalles"
+            (click)="verDetalles(pais)"
+          >
+            <svg
+              class="icono-boton"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
             >
-              Detalles
-            </button>
+              <circle cx="12" cy="12" r="9"></circle>
+              <line x1="12" y1="10" x2="12" y2="16"></line>
+              <circle cx="12" cy="7" r="1"></circle>
+            </svg>
+
+            <span>Detalles</span>
+          </button>
 
 
             <button
-              type="button"
-              class="btn-accion btn-clima"
-              (click)="verClima(pais)"
-            >
-              Clima
-            </button>
+  type="button"
+  class="btn-accion btn-clima"
+  (click)="verClima(pais)"
+>
+  <svg
+    class="icono-boton"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path
+      d="M7 18h10a4 4 0 0 0 .5-7.97
+         A5.5 5.5 0 0 0 7 8.5
+         A4.5 4.5 0 0 0 7 18Z"
+    ></path>
+
+    <line x1="12" y1="5" x2="12" y2="2.5"></line>
+    <line x1="6" y1="7" x2="4.2" y2="5.2"></line>
+    <line x1="18" y1="7" x2="19.8" y2="5.2"></line>
+  </svg>
+
+  <span>Clima</span>
+</button>
 
           </div>
 
@@ -311,3 +306,11 @@
   }
 
 </div>
+
+@if (modalAbierto() && paisSeleccionado(); as pais) {
+  <app-modal-pais
+    [pais]="pais"
+    [vista]="vistaModal()"
+    (cerrar)="cerrarModal()">
+  </app-modal-pais>
+}

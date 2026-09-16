@@ -1,0 +1,637 @@
+@if (pais) {
+
+  <div class="modal-overlay" (click)="cerrarModal()">
+
+    <div
+      class="modal-contenido"
+      (click)="$event.stopPropagation()"
+    >
+
+      <!-- ================================= -->
+      <!-- ENCABEZADO -->
+      <!-- ================================= -->
+
+      <div class="modal-header">
+
+        <div class="modal-titulo">
+
+          @if (vista === 'detalles') {
+
+            <span class="titulo-icono">
+
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 10v6"></path>
+                <circle cx="12" cy="7" r="0.8"></circle>
+              </svg>
+
+            </span>
+
+            <div>
+
+              <span class="titulo-etiqueta">
+                INFORMACIÓN DEL PAÍS
+              </span>
+
+              <h2>
+                Detalles
+              </h2>
+
+            </div>
+
+          }
+
+
+          @if (vista === 'clima') {
+
+            <span class="titulo-icono">
+
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 18h10a4 4 0 0 0 .5-7.97A5.5 5.5 0 0 0 7 8.5a4.5 4.5 0 0 0 0 9.5Z"></path>
+                <path d="M8 21l1-2"></path>
+                <path d="M12 21l1-2"></path>
+                <path d="M16 21l1-2"></path>
+              </svg>
+
+            </span>
+
+            <div>
+
+              <span class="titulo-etiqueta">
+                INFORMACIÓN METEOROLÓGICA
+              </span>
+
+              <h2>
+                Clima
+              </h2>
+
+            </div>
+
+          }
+
+        </div>
+
+
+        <!-- ================================= -->
+        <!-- BOTÓN CERRAR -->
+        <!-- ================================= -->
+
+        <button
+          type="button"
+          class="btn-cerrar"
+          (click)="cerrarModal()"
+          aria-label="Cerrar"
+        >
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+          </svg>
+
+        </button>
+
+      </div>
+
+
+      <!-- ================================= -->
+      <!-- VISTA DETALLES -->
+      <!-- ================================= -->
+
+      @if (vista === 'detalles') {
+
+        <div class="detalle-modal">
+
+
+          <!-- BANDERA -->
+
+          <div class="detalle-bandera-contenedor">
+
+            <img
+              [src]="pais.flag.url_png"
+              [alt]="pais.flag.description || 'Bandera de ' + nombreEnEspanol(pais)"
+              class="detalle-bandera"
+            />
+
+          </div>
+
+
+          <!-- NOMBRE -->
+
+          <div class="detalle-nombre">
+
+            <h1>
+              {{ nombreEnEspanol(pais) }}
+            </h1>
+
+            <p>
+              {{ pais.names.official }}
+            </p>
+
+          </div>
+
+
+          <!-- INFORMACIÓN -->
+
+          <div class="detalle-grid">
+
+
+            <!-- ================================= -->
+            <!-- CAPITAL -->
+            <!-- ================================= -->
+
+            @if (pais.capitals && pais.capitals.length > 0) {
+
+              <div class="detalle-item">
+
+                <div class="detalle-icono">
+
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 21h18"></path>
+                    <path d="M5 21V9l7-5 7 5v12"></path>
+                    <path d="M9 21v-6h6v6"></path>
+                  </svg>
+
+                </div>
+
+                <div>
+
+                  <span>
+                    Capital
+                  </span>
+
+                  <strong>
+                    {{ pais.capitals[0].name }}
+                  </strong>
+
+                </div>
+
+              </div>
+
+            }
+
+
+            <!-- ================================= -->
+            <!-- REGIÓN -->
+            <!-- ================================= -->
+
+            <div class="detalle-item">
+
+              <div class="detalle-icono">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M3 12h18"></path>
+                  <path d="M12 3c3 3 4.5 6 4.5 9s-1.5 6-4.5 9"></path>
+                  <path d="M12 3c-3 3-4.5 6-4.5 9s1.5 6 4.5 9"></path>
+                </svg>
+
+              </div>
+
+              <div>
+
+                <span>
+                  Región
+                </span>
+
+                <strong>
+                  {{
+                    pais.subregion
+                      ? pais.region + ' (' + pais.subregion + ')'
+                      : pais.region
+                  }}
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <!-- ================================= -->
+            <!-- POBLACIÓN -->
+            <!-- ================================= -->
+
+            @if (pais.population) {
+
+              <div class="detalle-item">
+
+                <div class="detalle-icono">
+
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="9" cy="8" r="3"></circle>
+                    <path d="M3 20c0-3.5 2.5-6 6-6s6 2.5 6 6"></path>
+                    <path d="M16 5.5a3 3 0 0 1 0 5.5"></path>
+                    <path d="M18 14c2 .7 3 2.5 3 5"></path>
+                  </svg>
+
+                </div>
+
+                <div>
+
+                  <span>
+                    Población
+                  </span>
+
+                  <strong>
+                    {{ pais.population | number }}
+                  </strong>
+
+                </div>
+
+              </div>
+
+            }
+
+
+            <!-- ================================= -->
+            <!-- CÓDIGOS -->
+            <!-- ================================= -->
+
+            <div class="detalle-item">
+
+              <div class="detalle-icono">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8 8l-4 4 4 4"></path>
+                  <path d="M16 8l4 4-4 4"></path>
+                  <path d="M14 5l-4 14"></path>
+                </svg>
+
+              </div>
+
+              <div>
+
+                <span>
+                  Códigos
+                </span>
+
+                <strong>
+                  {{ pais.codes.alpha_2 }} / {{ pais.codes.alpha_3 }}
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <!-- ================================= -->
+            <!-- IDIOMAS -->
+            <!-- ================================= -->
+
+            <div class="detalle-item">
+
+              <div class="detalle-icono">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M3 12h18"></path>
+                  <path d="M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9"></path>
+                  <path d="M12 3c-2.5 2.5-3.5 5.5-3.5 9s1 6.5 3.5 9"></path>
+                </svg>
+
+              </div>
+
+              <div>
+
+                <span>
+                  Idiomas
+                </span>
+
+                <strong>
+                  {{ obtenerIdiomas(pais) }}
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <!-- ================================= -->
+            <!-- MONEDA -->
+            <!-- ================================= -->
+
+            <div class="detalle-item">
+
+              <div class="detalle-icono">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M8 9h8"></path>
+                  <path d="M8 12h8"></path>
+                  <path d="M9 15h6"></path>
+                </svg>
+
+              </div>
+
+              <div>
+
+                <span>
+                  Moneda
+                </span>
+
+                <strong>
+                  {{ obtenerMonedas(pais) }}
+                </strong>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      }
+
+
+      <!-- ================================= -->
+      <!-- VISTA CLIMA -->
+      <!-- ================================= -->
+
+      @if (vista === 'clima') {
+
+        <div class="clima-modal">
+
+
+          <!-- ================================= -->
+          <!-- CABECERA DEL PAÍS -->
+          <!-- ================================= -->
+
+          <div class="clima-pais-header">
+
+            <div>
+
+              <span class="clima-etiqueta">
+                CLIMA ACTUAL
+              </span>
+
+              <h1>
+                {{ nombreEnEspanol(pais) }}
+              </h1>
+
+              <p>
+                Consulta las condiciones meteorológicas actuales
+              </p>
+
+            </div>
+
+
+            <img
+              [src]="pais.flag.url_png"
+              [alt]="pais.flag.description || 'Bandera de ' + nombreEnEspanol(pais)"
+              class="clima-bandera"
+            />
+
+          </div>
+
+
+          <!-- ================================= -->
+          <!-- CARGANDO -->
+          <!-- ================================= -->
+
+          @if (cargandoClima()) {
+
+            <div class="clima-cargando-contenedor">
+
+              <div class="clima-icono-grande">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <path d="M12 2v2"></path>
+                  <path d="M12 20v2"></path>
+                  <path d="M4.93 4.93l1.41 1.41"></path>
+                  <path d="M17.66 17.66l1.41 1.41"></path>
+                  <path d="M2 12h2"></path>
+                  <path d="M20 12h2"></path>
+                  <path d="M4.93 19.07l1.41-1.41"></path>
+                  <path d="M17.66 6.34l1.41-1.41"></path>
+                </svg>
+
+              </div>
+
+              <h3>
+                Consultando el clima
+              </h3>
+
+              <p>
+                Estamos obteniendo las condiciones meteorológicas...
+              </p>
+
+            </div>
+
+          }
+
+
+          <!-- ================================= -->
+          <!-- ERROR -->
+          <!-- ================================= -->
+
+          @if (errorClima()) {
+
+            <div class="clima-cargando-contenedor">
+
+              <div class="clima-icono-grande">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M12 8v5"></path>
+                  <circle cx="12" cy="16.5" r="0.7"></circle>
+                </svg>
+
+              </div>
+
+              <h3>
+                No se pudo obtener el clima
+              </h3>
+
+              <p>
+                {{ errorClima() }}
+              </p>
+
+            </div>
+
+          }
+
+
+          <!-- ================================= -->
+          <!-- INFORMACIÓN DEL CLIMA -->
+          <!-- ================================= -->
+
+          @if (clima(); as datos) {
+
+            <div class="clima-informacion">
+
+
+              <!-- ================================= -->
+              <!-- CLIMA PRINCIPAL -->
+              <!-- ================================= -->
+
+              <div class="clima-principal">
+
+                <div class="clima-icono-grande">
+
+                  <span>
+                    {{ obtenerIconoClima(datos.current.weather_code) }}
+                  </span>
+
+                </div>
+
+
+                <!-- TEMPERATURA -->
+
+                <div class="temperatura">
+
+                  <strong>
+                    {{ datos.current.temperature_2m | number:'1.0-1' }}°
+                  </strong>
+
+                  <span>
+                    °C
+                  </span>
+
+                </div>
+
+
+                <!-- DESCRIPCIÓN -->
+
+                <div class="clima-descripcion">
+
+                  {{ obtenerDescripcionClima(datos.current.weather_code) }}
+
+                </div>
+
+              </div>
+
+
+              <!-- ================================= -->
+              <!-- DATOS DEL CLIMA -->
+              <!-- ================================= -->
+
+              <div class="datos-clima">
+
+
+                <!-- HUMEDAD -->
+
+                <div class="dato-clima">
+
+                  <div class="dato-clima-icono">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11Z"></path>
+                    </svg>
+
+                  </div>
+
+                  <div>
+
+                    <span>
+                      Humedad
+                    </span>
+
+                    <strong>
+                      {{ datos.current.relative_humidity_2m }} %
+                    </strong>
+
+                  </div>
+
+                </div>
+
+
+                <!-- SENSACIÓN TÉRMICA -->
+
+                <div class="dato-clima">
+
+                  <div class="dato-clima-icono">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M14 14.8V6a2 2 0 0 0-4 0v8.8a4 4 0 1 0 4 0Z"></path>
+                      <path d="M12 11v6"></path>
+                    </svg>
+
+                  </div>
+
+                  <div>
+
+                    <span>
+                      Sensación térmica
+                    </span>
+
+                    <strong>
+                      {{ datos.current.apparent_temperature | number:'1.0-1' }} °C
+                    </strong>
+
+                  </div>
+
+                </div>
+
+
+                <!-- VIENTO -->
+
+                <div class="dato-clima">
+
+                  <div class="dato-clima-icono">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M3 8h10a3 3 0 1 0-3-3"></path>
+                      <path d="M3 12h15a3 3 0 1 1-3 3"></path>
+                      <path d="M3 16h7"></path>
+                    </svg>
+
+                  </div>
+
+                  <div>
+
+                    <span>
+                      Viento
+                    </span>
+
+                    <strong>
+                      {{ datos.current.wind_speed_10m | number:'1.0-1' }} km/h
+                    </strong>
+
+                  </div>
+
+                </div>
+
+
+                <!-- PRECIPITACIÓN -->
+
+                <div class="dato-clima">
+
+                  <div class="dato-clima-icono">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 3s5 6 5 10a5 5 0 0 1-10 0c0-4 5-10 5-10Z"></path>
+                      <path d="M9 15h6"></path>
+                    </svg>
+
+                  </div>
+
+                  <div>
+
+                    <span>
+                      Precipitación
+                    </span>
+
+                    <strong>
+                      {{ datos.current.precipitation | number:'1.0-1' }} mm
+                    </strong>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          }
+
+        </div>
+
+      }
+
+    </div>
+
+  </div>
+
+}

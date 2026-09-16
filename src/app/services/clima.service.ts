@@ -30,13 +30,19 @@ export class ClimaService {
       .set('format', 'json');
 
     return this.http
-      .get<GeocodingResponse>(this.geocodingUrl, { params })
+      .get<GeocodingResponse>(
+        this.geocodingUrl,
+        { params }
+      )
       .pipe(
         map((respuesta) => {
+
           const ubicacion = respuesta.results?.[0];
 
           if (!ubicacion) {
-            throw new Error('No se encontró la ubicación');
+            throw new Error(
+              'No se encontró la ubicación'
+            );
           }
 
           return ubicacion;
@@ -63,18 +69,7 @@ export class ClimaService {
           'wind_speed_10m'
         ].join(',')
       )
-      .set(
-        'daily',
-        [
-          'weather_code',
-          'temperature_2m_max',
-          'temperature_2m_min',
-          'precipitation_sum',
-          'wind_speed_10m_max'
-        ].join(',')
-      )
-      .set('timezone', 'auto')
-      .set('forecast_days', '7');
+      .set('timezone', 'auto');
 
     return this.http.get<ClimaResponse>(
       this.weatherUrl,
@@ -82,7 +77,9 @@ export class ClimaService {
     );
   }
 
-  obtenerClimaPorUbicacion(nombre: string): Observable<ClimaResponse> {
+  obtenerClimaPorUbicacion(
+    nombre: string
+  ): Observable<ClimaResponse> {
 
     return this.buscarUbicacion(nombre).pipe(
       switchMap((ubicacion) =>

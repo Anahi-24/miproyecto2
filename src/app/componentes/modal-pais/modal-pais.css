@@ -1,0 +1,928 @@
+/* =========================================
+   FONDO DEL MODAL
+========================================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  background: rgba(15, 23, 42, 0.48);
+
+  backdrop-filter: blur(5px);
+
+  animation: aparecerOverlay 0.2s ease;
+}
+
+
+/* =========================================
+   CONTENEDOR
+========================================= */
+
+.modal-contenido {
+  position: relative;
+
+  width: 100%;
+  max-width: 780px;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(226, 232, 240, 0.9);
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 25px 70px rgba(15, 23, 42, 0.22),
+    0 8px 25px rgba(15, 23, 42, 0.10);
+
+  animation: aparecerModal 0.25s ease;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.modal-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 24px 28px;
+
+  border-bottom: 1px solid #edf2f7;
+}
+
+.modal-titulo {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+}
+
+.titulo-icono {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  border-radius: 13px;
+
+  background: #eef5ff;
+
+  color: #1769e0;
+}
+
+.titulo-icono svg {
+  width: 22px;
+  height: 22px;
+
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 1.8;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.titulo-etiqueta {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #8a9caf;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.2px;
+}
+
+.modal-titulo h2 {
+  margin: 0;
+
+  color: #172b4d;
+
+  font-size: 23px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================
+   BOTÓN CERRAR
+========================================= */
+
+.btn-cerrar {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #f5f7fa;
+
+  color: #64748b;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-cerrar:hover {
+  background: #e9eef5;
+
+  color: #172b4d;
+
+  transform: rotate(4deg);
+}
+
+.btn-cerrar svg {
+  width: 18px;
+  height: 18px;
+
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 2;
+
+  stroke-linecap: round;
+}
+
+
+/* =========================================
+   DETALLES DEL PAÍS
+========================================= */
+
+.detalle-modal {
+  padding: 30px;
+}
+
+.detalle-bandera-contenedor {
+  display: flex;
+
+  justify-content: center;
+
+  margin-bottom: 20px;
+}
+
+.detalle-bandera {
+  width: 220px;
+  max-width: 100%;
+
+  height: 135px;
+
+  object-fit: contain;
+
+  border-radius: 14px;
+
+  border: 1px solid #e2e8f0;
+
+  background: #f8fafc;
+
+  box-shadow:
+    0 8px 25px rgba(15, 23, 42, 0.08);
+}
+
+.detalle-nombre {
+  text-align: center;
+
+  margin-bottom: 30px;
+}
+
+.detalle-nombre h1 {
+  margin: 0;
+
+  color: #172b4d;
+
+  font-size: 32px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.7px;
+}
+
+.detalle-nombre p {
+  margin: 8px 0 0;
+
+  color: #71839a;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   GRID DETALLES
+========================================= */
+
+.detalle-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 14px;
+}
+
+.detalle-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  min-height: 70px;
+
+  padding: 15px 17px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #edf1f5;
+
+  border-radius: 15px;
+
+  background: #f8fafc;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.detalle-item:hover {
+  background: #ffffff;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+.detalle-icono {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  color: #1769e0;
+
+  box-shadow:
+    0 3px 8px rgba(15, 23, 42, 0.06);
+}
+
+.detalle-icono svg {
+  width: 21px;
+  height: 21px;
+
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 1.7;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.detalle-item span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #8a9caf;
+
+  font-size: 11px;
+}
+
+.detalle-item strong {
+  display: block;
+
+  color: #243b53;
+
+  font-size: 15px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================
+   CLIMA
+========================================= */
+
+.clima-modal {
+  padding: 30px;
+}
+
+.clima-pais-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  padding-bottom: 25px;
+
+  border-bottom: 1px solid #edf2f7;
+}
+
+.clima-etiqueta {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #1769e0;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.3px;
+}
+
+.clima-pais-header h1 {
+  margin: 0;
+
+  color: #172b4d;
+
+  font-size: 30px;
+
+  font-weight: 800;
+}
+
+.clima-pais-header p {
+  margin: 8px 0 0;
+
+  color: #71839a;
+
+  font-size: 14px;
+}
+
+.clima-bandera {
+  width: 120px;
+  height: 78px;
+
+  flex-shrink: 0;
+
+  object-fit: contain;
+
+  border-radius: 12px;
+
+  border: 1px solid #e2e8f0;
+
+  background: #f8fafc;
+}
+
+
+/* =========================================
+   CLIMA - CARGANDO / ERROR
+========================================= */
+
+.clima-cargando-contenedor {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 220px;
+
+  text-align: center;
+}
+
+.clima-cargando-contenedor h3 {
+  margin: 0;
+
+  color: #243b53;
+
+  font-size: 17px;
+}
+
+.clima-cargando-contenedor p {
+  margin: 7px 0 0;
+
+  color: #8a9caf;
+
+  font-size: 13px;
+}
+
+
+/* =========================================
+   SPINNER
+========================================= */
+
+.clima-spinner {
+  width: 38px;
+  height: 38px;
+
+  margin-bottom: 15px;
+
+  border: 4px solid #e5edf7;
+
+  border-top-color: #1769e0;
+
+  border-radius: 50%;
+
+  animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.clima-error {
+  color: #b42318;
+}
+
+.clima-error-icono {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  margin-bottom: 12px;
+
+  border-radius: 14px;
+
+  background: #fff1f0;
+
+  color: #d92d20;
+
+  font-size: 24px;
+}
+
+
+/* =========================================
+   ICONO GRANDE DEL CLIMA
+========================================= */
+
+.clima-icono-grande {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 80px;
+  height: 80px;
+
+  margin-bottom: 18px;
+
+  border-radius: 22px;
+
+  background: #eef5ff;
+
+  color: #1769e0;
+
+  flex-shrink: 0;
+}
+
+.clima-icono-grande svg {
+  width: 42px;
+  height: 42px;
+
+  display: block;
+
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 1.6;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+/* =========================================
+   ICONO METEOROLÓGICO DEL TYPESCRIPT
+========================================= */
+
+.clima-icono-grande span {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  font-size: 38px;
+
+  line-height: 1;
+
+  color: #1769e0;
+
+  font-family: Arial, sans-serif;
+}
+
+
+/* =========================================
+   INFORMACIÓN DEL CLIMA
+========================================= */
+
+.clima-informacion {
+  padding-top: 25px;
+}
+
+.clima-principal {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+}
+
+.clima-principal .clima-icono-grande {
+  margin-bottom: 12px;
+}
+
+.temperatura {
+  display: flex;
+
+  align-items: baseline;
+  justify-content: center;
+
+  gap: 5px;
+
+  color: #172b4d;
+}
+
+.temperatura strong {
+  font-size: 48px;
+
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing: -1px;
+}
+
+.temperatura span {
+  color: #71839a;
+
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+.clima-descripcion {
+  margin-top: 10px;
+
+  color: #64748b;
+
+  font-size: 15px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================
+   DATOS DEL CLIMA
+========================================= */
+
+.datos-clima {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 14px;
+
+  margin-top: 25px;
+}
+
+.dato-clima {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  min-height: 68px;
+
+  padding: 14px 16px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #edf1f5;
+
+  border-radius: 15px;
+
+  background: #f8fafc;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.dato-clima:hover {
+  transform: translateY(-2px);
+
+  border-color: #d9e5f2;
+
+  box-shadow:
+    0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================
+   ICONOS DE LOS DATOS DEL CLIMA
+========================================= */
+
+.dato-icono {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 46px;
+  height: 46px;
+
+  flex-shrink: 0;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  color: #1769e0;
+
+  box-shadow:
+    0 3px 8px rgba(15, 23, 42, 0.06);
+}
+
+.dato-icono svg {
+  width: 24px;
+  height: 24px;
+
+  display: block;
+
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 1.8;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+/* Compatibilidad con la clase anterior */
+
+.dato-clima-icono {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 46px;
+  height: 46px;
+
+  flex-shrink: 0;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  color: #1769e0;
+
+  box-shadow:
+    0 3px 8px rgba(15, 23, 42, 0.06);
+}
+
+.dato-clima-icono svg {
+  width: 24px;
+  height: 24px;
+
+  display: block;
+
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 1.8;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dato-clima span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #8a9caf;
+
+  font-size: 11px;
+}
+
+.dato-clima strong {
+  display: block;
+
+  color: #243b53;
+
+  font-size: 15px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================
+   ANIMACIONES
+========================================= */
+
+@keyframes aparecerOverlay {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+@keyframes aparecerModal {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(15px)
+      scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================
+   MÓVIL - 650px
+========================================= */
+
+@media (max-width: 650px) {
+
+  .modal-overlay {
+    padding: 12px;
+  }
+
+  .modal-contenido {
+    max-height: 94vh;
+
+    border-radius: 20px;
+  }
+
+  .modal-header {
+    padding: 19px 20px;
+  }
+
+  .detalle-modal,
+  .clima-modal {
+    padding: 22px 20px;
+  }
+
+  .detalle-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detalle-bandera {
+    width: 190px;
+
+    height: 115px;
+  }
+
+  .detalle-nombre h1 {
+    font-size: 27px;
+  }
+
+  .clima-pais-header {
+    align-items: flex-start;
+  }
+
+  .clima-pais-header h1 {
+    font-size: 26px;
+  }
+
+  .clima-bandera {
+    width: 90px;
+
+    height: 60px;
+  }
+
+  .datos-clima {
+    grid-template-columns: 1fr;
+  }
+
+  .temperatura strong {
+    font-size: 42px;
+  }
+
+  .clima-icono-grande {
+    width: 70px;
+
+    height: 70px;
+  }
+
+  .clima-icono-grande span {
+    font-size: 34px;
+  }
+
+}
+
+
+/* =========================================
+   MÓVIL - 450px
+========================================= */
+
+@media (max-width: 450px) {
+
+  .modal-titulo {
+    gap: 10px;
+  }
+
+  .titulo-icono {
+    width: 38px;
+
+    height: 38px;
+  }
+
+  .modal-titulo h2 {
+    font-size: 20px;
+  }
+
+  .titulo-etiqueta {
+    font-size: 8px;
+  }
+
+  .clima-pais-header {
+    flex-direction: column;
+  }
+
+  .clima-bandera {
+    align-self: flex-start;
+  }
+
+  .temperatura strong {
+    font-size: 38px;
+  }
+
+}

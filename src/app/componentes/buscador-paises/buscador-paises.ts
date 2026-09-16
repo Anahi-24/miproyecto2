@@ -2,24 +2,29 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PaisesService } from '../../services/paises.service';
 import { Pais } from '../../models/pais.interface';
-import { Router } from '@angular/router';
+ // import { Router } from '@angular/router';
 import { ClimaService } from '../../services/clima.service';
+import { ModalPaisComponent } from '../modal-pais/modal-pais';
 
 @Component({
   selector: 'app-buscador-paises',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ModalPaisComponent],
   templateUrl: './buscador-paises.html',
   styleUrl: './buscador-paises.css'
 })
 export class BuscadorPaisesComponent {
   private paisesService = inject(PaisesService);
-  private router = inject(Router);
+  // private router = inject(Router);
   private climaService = inject(ClimaService);
   termino = signal('');
   todosPaises = signal<Pais[]>([]);
   cargando = signal(true);
   error = signal<string | null>(null);
+  modalAbierto = signal(false);
+  paisSeleccionado = signal<Pais | null>(null);
+  vistaModal = signal<'detalles' | 'clima'>('detalles');
+
 
   // Filtro reactivo: se recalcula solo cuando cambian termino() o todosPaises()
   paises = computed(() => {
@@ -59,24 +64,21 @@ private normalizar(texto: string): string {
       .replace(/[\u0300-\u036f]/g, '');
   }
 
-verDetalles(pais: Pais): void {
-    this.router.navigate(['/pais', pais.codes.alpha_3]);
+  verDetalles(pais: Pais): void {
+    this.paisSeleccionado.set(pais);
+    this.vistaModal.set('detalles');
+    this.modalAbierto.set(true);
   }
 
-verClima(pais: Pais): void {
-  const codigo = pais.codes.alpha_3;
+  verClima(pais: Pais): void {
+    this.paisSeleccionado.set(pais);
+    this.vistaModal.set('clima');
+    this.modalAbierto.set(true);
+  }
 
-  console.log('CLIMA - código:', codigo);
-  console.log('CLIMA - URL antes:', window.location.href);
-
-  this.router.navigateByUrl('/clima/' + codigo)
-    .then((resultado) => {
-      console.log('CLIMA - navegación:', resultado);
-      console.log('CLIMA - URL después:', window.location.href);
-    })
-    .catch((error) => {
-      console.error('CLIMA - error:', error);
-    });
-}
+  cerrarModal(): void {
+    this.modalAbierto.set(false);
+    this.paisSeleccionado.set(null);
+  }
 
 } 

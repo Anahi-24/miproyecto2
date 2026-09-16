@@ -1,19 +1,28 @@
 /* =========================================
-   PÁGINA
+   PÁGINA PRINCIPAL
 ========================================= */
 
 .buscador-container {
   min-height: 100vh;
   width: 100%;
-
   box-sizing: border-box;
 
-  padding: 38px 25px 60px;
+  padding: 40px 25px 70px;
 
-  background-image:
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(84, 199, 138, 0.16),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(35, 136, 223, 0.18),
+      transparent 30%
+    ),
     linear-gradient(
-      rgba(248, 251, 255, 0.70),
-      rgba(248, 251, 255, 0.70)
+      rgba(245, 249, 255, 0.76),
+      rgba(245, 249, 255, 0.76)
     ),
     url('/mundo-fondo.png');
 
@@ -21,6 +30,8 @@
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+
+  transition: padding-top 0.5s ease;
 }
 
 
@@ -32,49 +43,75 @@
   width: 105px;
   height: 105px;
 
-  margin: 0 auto 2px;
+  margin: 0 auto 4px;
+
+  transition:
+    width 0.5s ease,
+    height 0.5s ease,
+    transform 0.5s ease;
 }
 
-.logo-paises svg {
+
+/* =========================================
+   GIF DEL PLANETA
+========================================= */
+
+.logo-paises img {
   width: 100%;
   height: 100%;
 
   display: block;
+
+  object-fit: contain;
+
+  border-radius: 50%;
+
+  transition:
+    width 0.5s ease,
+    height 0.5s ease,
+    transform 0.5s ease;
+
+  filter:
+    drop-shadow(0 8px 14px rgba(31, 65, 98, 0.16));
 }
 
 
-/* Globo */
+/* =========================================
+   GLOBO
+========================================= */
 
 .globo-circulo {
   fill: #2388df;
 }
 
 
-/* Continentes */
+/* =========================================
+   CONTINENTES
+========================================= */
 
 .globo-tierra {
   fill: #54c78a;
 }
 
 
-/* Lupa del logo */
+/* =========================================
+   LUPA DEL LOGO
+========================================= */
 
 .logo-lupa {
   fill: #ffffff;
-
   stroke: #172b4d;
-
   stroke-width: 3.5;
 }
 
 
-/* Mango de la lupa */
+/* =========================================
+   MANGO DE LA LUPA
+========================================= */
 
 .logo-lupa-line {
   stroke: #172b4d;
-
   stroke-width: 4.5;
-
   stroke-linecap: round;
 }
 
@@ -86,27 +123,40 @@
 .buscador-header {
   text-align: center;
 
-  margin-bottom: 25px;
+  margin-bottom: 24px;
+
+  transition:
+    margin-bottom 0.45s ease;
 }
+
 
 .buscador-header h1 {
   margin: 0;
 
   color: #102a4c;
 
-  font-size: 38px;
-
+  font-size: 40px;
   font-weight: 800;
 
-  letter-spacing: -1.2px;
+  letter-spacing: -1.4px;
+
+  transition:
+    font-size 0.45s ease,
+    transform 0.45s ease;
 }
 
-.buscador-header p {
-  margin: 8px 0 0;
 
-  color: #71839a;
+.buscador-header p {
+  margin: 9px 0 0;
+
+  color: #667f99;
 
   font-size: 14px;
+
+  transition:
+    opacity 0.3s ease,
+    height 0.3s ease,
+    margin 0.3s ease;
 }
 
 
@@ -118,12 +168,16 @@
   position: relative;
 
   width: 100%;
+  max-width: 620px;
 
-  max-width: 610px;
+  height: 56px;
 
-  height: 52px;
+  margin: 0 auto 38px;
 
-  margin: 0 auto 35px;
+  transition:
+    max-width 0.45s ease,
+    margin-bottom 0.45s ease,
+    transform 0.45s ease;
 }
 
 
@@ -134,18 +188,17 @@
 .search-icon {
   position: absolute;
 
-  left: 16px;
-
+  left: 18px;
   top: 50%;
 
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
 
   transform: translateY(-50%);
 
   fill: none;
 
-  stroke: #7190ae;
+  stroke: #5e83a7;
 
   stroke-width: 1.8;
 
@@ -167,42 +220,190 @@
 
   box-sizing: border-box;
 
-  padding: 0 20px 0 45px;
+  /* Espacio para la lupa izquierda y la X derecha */
+  padding: 0 55px 0 48px;
 
-  border: 1px solid #d9e4f0;
+  border: 2px solid rgba(215, 228, 241, 0.9);
 
-  border-radius: 28px;
+  border-radius: 30px;
 
   outline: none;
 
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.96);
 
   color: #243b53;
 
-  font-size: 13px;
+  font-size: 14px;
 
   box-shadow:
-    0 6px 20px rgba(61, 101, 140, 0.10);
+    0 10px 30px rgba(44, 91, 132, 0.10),
+    0 2px 6px rgba(44, 91, 132, 0.05);
 
   transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
+
 
 .search-input::placeholder {
   color: #9aabc0;
 }
 
+
 .search-input:hover {
-  border-color: #c7d6e6;
+  border-color: #bcd1e5;
 }
 
+
 .search-input:focus {
-  border-color: #80a9d1;
+  border-color: #4b9bea;
 
   box-shadow:
-    0 0 0 3px rgba(96, 165, 250, 0.12),
-    0 7px 22px rgba(61, 101, 140, 0.12);
+    0 0 0 4px rgba(35, 136, 223, 0.13),
+    0 14px 32px rgba(44, 91, 132, 0.14);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   BOTÓN LIMPIAR
+========================================= */
+
+.btn-limpiar {
+  position: absolute;
+
+  right: 13px;
+  top: 50%;
+
+  width: 32px;
+  height: 32px;
+
+  transform: translateY(-50%);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #eef3f8;
+
+  color: #6f8499;
+
+  cursor: pointer;
+
+  z-index: 3;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.btn-limpiar:hover {
+  background: #dfe9f3;
+
+  color: #19324d;
+
+  transform: translateY(-50%) scale(1.08);
+}
+
+
+.btn-limpiar:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+
+.btn-limpiar svg {
+  width: 15px;
+  height: 15px;
+
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 2;
+
+  stroke-linecap: round;
+}
+
+
+/* =========================================
+   ESTADO CUANDO HAY BÚSQUEDA
+========================================= */
+
+.buscador-container.hay-resultados {
+  padding-top: 20px;
+}
+
+
+/* =========================================
+   LOGO MÁS PEQUEÑO AL BUSCAR
+========================================= */
+
+.buscador-container.hay-resultados .logo-paises {
+  width: 72px;
+  height: 72px;
+
+  margin-bottom: 0;
+}
+
+
+/* =========================================
+   GIF MÁS PEQUEÑO AL BUSCAR
+========================================= */
+
+.buscador-container.hay-resultados .logo-paises img {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* =========================================
+   TÍTULO MÁS PEQUEÑO AL BUSCAR
+========================================= */
+
+.buscador-container.hay-resultados .buscador-header {
+  margin-bottom: 17px;
+}
+
+
+.buscador-container.hay-resultados .buscador-header h1 {
+  font-size: 32px;
+}
+
+
+/* =========================================
+   OCULTAR SUBTÍTULO AL BUSCAR
+========================================= */
+
+.buscador-container.hay-resultados .buscador-header p {
+  opacity: 0;
+
+  height: 0;
+
+  margin: 0;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   BUSCADOR MÁS ANCHO AL BUSCAR
+========================================= */
+
+.buscador-container.hay-resultados .search-box {
+  max-width: 700px;
+
+  margin-bottom: 30px;
 }
 
 
@@ -215,13 +416,15 @@
 
   flex-direction: column;
 
-  gap: 13px;
+  gap: 14px;
 
   width: 100%;
 
   max-width: 850px;
 
   margin: 0 auto;
+
+  animation: aparecerResultados 0.45s ease;
 }
 
 
@@ -230,40 +433,72 @@
 ========================================= */
 
 .pais-fila {
+  position: relative;
+
   display: flex;
 
   align-items: center;
 
   gap: 18px;
 
-  min-height: 78px;
+  min-height: 82px;
 
-  padding: 12px 16px;
+  padding: 13px 17px;
 
   box-sizing: border-box;
 
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.97);
 
-  border: 1px solid #e5edf5;
+  border: 1px solid #e1ebf4;
 
-  border-radius: 16px;
+  border-radius: 18px;
 
   box-shadow:
-    0 4px 14px rgba(31, 65, 98, 0.05);
+    0 7px 20px rgba(31, 65, 98, 0.07);
+
+  overflow: hidden;
 
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
-.pais-fila:hover {
-  transform: translateY(-2px);
 
-  border-color: #d7e2ed;
+/* =========================================
+   LÍNEA DE COLOR LATERAL
+========================================= */
+
+.pais-fila::before {
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 4px;
+
+  background: linear-gradient(
+    to bottom,
+    #2388df,
+    #54c78a
+  );
+}
+
+
+/* =========================================
+   HOVER PAÍS
+========================================= */
+
+.pais-fila:hover {
+  transform: translateY(-3px);
+
+  border-color: #cfe0ee;
 
   box-shadow:
-    0 8px 22px rgba(31, 65, 98, 0.09);
+    0 12px 28px rgba(31, 65, 98, 0.11);
 }
 
 
@@ -272,21 +507,24 @@
 ========================================= */
 
 .pais-bandera {
-  width: 64px;
-  height: 44px;
+  width: 68px;
+  height: 46px;
 
   flex-shrink: 0;
 
   object-fit: cover;
 
-  border-radius: 8px;
+  border-radius: 9px;
 
-  border: 1px solid #e1e8ef;
+  border: 1px solid #dce6ef;
+
+  box-shadow:
+    0 3px 9px rgba(31, 65, 98, 0.10);
 }
 
 
 /* =========================================
-   NOMBRE
+   NOMBRE DEL PAÍS
 ========================================= */
 
 .pais-nombre {
@@ -305,7 +543,7 @@
 
 
 /* =========================================
-   BOTONES
+   ACCIONES
 ========================================= */
 
 .pais-acciones {
@@ -316,10 +554,15 @@
   gap: 8px;
 }
 
+
+/* =========================================
+   BOTONES
+========================================= */
+
 .btn-accion {
   padding: 9px 14px;
 
-  border-radius: 9px;
+  border-radius: 10px;
 
   font-size: 13px;
 
@@ -330,8 +573,71 @@
   transition:
     background 0.2s ease,
     border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* =========================================
+   ICONOS DE LOS BOTONES
+========================================= */
+
+.btn-accion {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+}
+
+
+.icono-boton {
+  width: 16px;
+  height: 16px;
+
+  flex-shrink: 0;
+
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 1.8;
+
+  stroke-linecap: round;
+
+  stroke-linejoin: round;
+
+  transition:
     transform 0.2s ease;
 }
+
+
+/* =========================================
+   ANIMACIÓN DEL ICONO
+========================================= */
+
+.btn-accion:hover .icono-boton {
+  transform: scale(1.12);
+}
+
+
+/* =========================================
+   ICONO DETALLES
+========================================= */
+
+.btn-detalles .icono-boton {
+  stroke-width: 1.9;
+}
+
+
+/* =========================================
+   ICONO CLIMA
+========================================= */
+
+.btn-clima .icono-boton {
+  stroke-width: 1.7;
+}
+
 
 .btn-accion:hover {
   transform: translateY(-1px);
@@ -348,10 +654,17 @@
   background: #1769e0;
 
   color: #ffffff;
+
+  box-shadow:
+    0 4px 10px rgba(23, 105, 224, 0.18);
 }
+
 
 .btn-detalles:hover {
   background: #125bc5;
+
+  box-shadow:
+    0 6px 14px rgba(23, 105, 224, 0.24);
 }
 
 
@@ -367,15 +680,16 @@
   color: #37516c;
 }
 
-.btn-clima:hover {
-  background: #f4f8fc;
 
-  border-color: #c4d3e2;
+.btn-clima:hover {
+  background: #f1f7fd;
+
+  border-color: #b9cee2;
 }
 
 
 /* =========================================
-   ESTADOS
+   ESTADOS GENERALES
 ========================================= */
 
 .estado-mensaje {
@@ -392,17 +706,18 @@
   min-height: 100px;
 }
 
+
 .estado-mensaje p {
   margin: 0;
 
-  color: #8a9caf;
+  color: #8094a9;
 
   font-size: 14px;
 }
 
 
 /* =========================================
-   MENSAJES VACÍOS
+   ESTADOS VACÍOS
 ========================================= */
 
 .vacio {
@@ -419,7 +734,7 @@
 .estado-icon {
   fill: none;
 
-  stroke: #8da4bc;
+  stroke: #6f98bc;
 
   stroke-linecap: round;
 
@@ -428,14 +743,17 @@
 
 
 /* =========================================
-   "NO SE ENCONTRARON PAÍSES"
+   SIN RESULTADOS
 ========================================= */
 
 .sin-resultados {
   margin-top: 10px;
 
   min-height: 130px;
+
+  animation: aparecerResultados 0.35s ease;
 }
+
 
 .lupa-estado {
   width: 34px;
@@ -448,15 +766,16 @@
   opacity: 0.75;
 }
 
+
 .sin-resultados p {
-  color: #8a9caf;
+  color: #8296aa;
 
   font-size: 14px;
 }
 
 
 /* =========================================
-   "EMPIEZA A ESCRIBIR"
+   MENSAJE INICIAL
 ========================================= */
 
 .mensaje-inicial {
@@ -464,6 +783,7 @@
 
   min-height: 145px;
 }
+
 
 .lupa-grande {
   width: 42px;
@@ -475,6 +795,7 @@
 
   opacity: 0.65;
 }
+
 
 .mensaje-inicial p {
   color: #8295aa;
@@ -493,6 +814,7 @@
   min-height: 130px;
 }
 
+
 .error-icon {
   width: 32px;
   height: 32px;
@@ -507,6 +829,7 @@
 
   stroke-linecap: round;
 }
+
 
 .error p {
   color: #c0392b;
@@ -523,7 +846,7 @@
 
   border: 3px solid #dbe5ef;
 
-  border-top-color: #1769e0;
+  border-top-color: #2388df;
 
   border-radius: 50%;
 
@@ -532,12 +855,31 @@
 
 
 /* =========================================
-   ANIMACIÓN
+   ANIMACIÓN SPINNER
 ========================================= */
 
 @keyframes girar {
   to {
     transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================
+   ANIMACIÓN RESULTADOS
+========================================= */
+
+@keyframes aparecerResultados {
+  from {
+    opacity: 0;
+
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
   }
 }
 
@@ -554,14 +896,21 @@
     background-attachment: scroll;
   }
 
+
+  /* Logo */
+
   .logo-paises {
     width: 90px;
     height: 90px;
   }
 
+
+  /* Título */
+
   .buscador-header h1 {
     font-size: 31px;
   }
+
 
   .buscador-header p {
     font-size: 13px;
@@ -569,9 +918,33 @@
     line-height: 1.5;
   }
 
+
+  /* Buscador */
+
   .search-box {
-    height: 50px;
+    height: 52px;
   }
+
+
+  /* Estado con búsqueda */
+
+  .buscador-container.hay-resultados {
+    padding-top: 15px;
+  }
+
+
+  .buscador-container.hay-resultados .logo-paises {
+    width: 62px;
+    height: 62px;
+  }
+
+
+  .buscador-container.hay-resultados .buscador-header h1 {
+    font-size: 27px;
+  }
+
+
+  /* País */
 
   .pais-fila {
     display: grid;
@@ -579,7 +952,12 @@
     grid-template-columns: auto 1fr;
 
     gap: 12px;
+
+    padding: 13px;
   }
+
+
+  /* Acciones */
 
   .pais-acciones {
     grid-column: 1 / -1;
@@ -591,7 +969,48 @@
     width: 100%;
   }
 
+
   .btn-accion {
     width: 100%;
+  }
+}
+
+
+/* =========================================
+   MÓVIL PEQUEÑO
+========================================= */
+
+@media (max-width: 400px) {
+
+  .buscador-container {
+    padding-left: 14px;
+
+    padding-right: 14px;
+  }
+
+
+  .buscador-header h1 {
+    font-size: 27px;
+  }
+
+
+  .buscador-header p {
+    font-size: 12px;
+  }
+
+
+  .pais-bandera {
+    width: 58px;
+    height: 40px;
+  }
+
+
+  .pais-nombre {
+    font-size: 15px;
+  }
+
+
+  .buscador-container.hay-resultados .buscador-header h1 {
+    font-size: 24px;
   }
 }
