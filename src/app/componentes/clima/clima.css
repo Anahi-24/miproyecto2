@@ -1,9 +1,10 @@
-/* ================================
+/* =========================================
    CONTENEDOR PRINCIPAL
-================================ */
+========================================= */
 
 .clima-container {
   min-height: 100vh;
+
   width: 100%;
 
   box-sizing: border-box;
@@ -24,20 +25,19 @@
 }
 
 
-/* ================================
+/* =========================================
    BOTÓN VOLVER
-================================ */
+========================================= */
 
 .btn-volver {
   display: inline-flex;
-
   align-items: center;
+
   gap: 6px;
 
   padding: 8px 13px;
 
   border: 1px solid #d5e0eb;
-
   border-radius: 8px;
 
   background: rgba(255, 255, 255, 0.95);
@@ -58,6 +58,7 @@
     transform 0.2s ease;
 }
 
+
 .btn-volver:hover {
   background: #f4f8fc;
 
@@ -67,9 +68,9 @@
 }
 
 
-/* ================================
+/* =========================================
    TARJETA PRINCIPAL
-================================ */
+========================================= */
 
 .clima-card {
   position: relative;
@@ -98,9 +99,9 @@
 }
 
 
-/* ================================
-   DECORACIÓN DE LA TARJETA
-================================ */
+/* =========================================
+   DECORACIÓN
+========================================= */
 
 .clima-card::before {
   content: "";
@@ -121,9 +122,9 @@
 }
 
 
-/* ================================
+/* =========================================
    ENCABEZADO
-================================ */
+========================================= */
 
 .clima-header {
   position: relative;
@@ -133,7 +134,6 @@
   display: flex;
 
   justify-content: space-between;
-
   align-items: center;
 
   gap: 30px;
@@ -148,7 +148,6 @@
   color: #64748b;
 
   font-size: 11px;
-
   font-weight: 800;
 
   letter-spacing: 1.5px;
@@ -161,7 +160,6 @@
   color: #111827;
 
   font-size: 36px;
-
   font-weight: 800;
 
   line-height: 1.1;
@@ -179,13 +177,12 @@
 }
 
 
-/* ================================
+/* =========================================
    BANDERA
-================================ */
+========================================= */
 
 .bandera {
   width: 95px;
-
   height: 64px;
 
   object-fit: cover;
@@ -206,16 +203,18 @@
 
 
 .bandera:hover {
-  transform: translateY(-3px) scale(1.03);
+  transform:
+    translateY(-3px)
+    scale(1.03);
 
   box-shadow:
     0 11px 23px rgba(15, 23, 42, 0.14);
 }
 
 
-/* ================================
+/* =========================================
    CLIMA PRINCIPAL
-================================ */
+========================================= */
 
 .clima-principal {
   position: relative;
@@ -236,19 +235,17 @@
 }
 
 
-/* ================================
+/* =========================================
    ICONO DEL CLIMA
-================================ */
+========================================= */
 
 .icono-clima {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   width: 105px;
-
   height: 105px;
 
   flex-shrink: 0;
@@ -269,15 +266,14 @@
 }
 
 
-/* ================================
+/* =========================================
    TEMPERATURA
-================================ */
+========================================= */
 
 .temperatura {
   color: #111827;
 
   font-size: 60px;
-
   font-weight: 800;
 
   line-height: 1;
@@ -286,9 +282,9 @@
 }
 
 
-/* ================================
+/* =========================================
    DESCRIPCIÓN
-================================ */
+========================================= */
 
 .descripcion {
   margin: 8px 0 0;
@@ -296,14 +292,13 @@
   color: #64748b;
 
   font-size: 16px;
-
   font-weight: 500;
 }
 
 
-/* ================================
+/* =========================================
    DATOS DEL CLIMA
-================================ */
+========================================= */
 
 .datos-clima {
   position: relative;
@@ -320,9 +315,9 @@
 }
 
 
-/* ================================
+/* =========================================
    DATO
-================================ */
+========================================= */
 
 .dato {
   display: flex;
@@ -360,19 +355,17 @@
 }
 
 
-/* ================================
+/* =========================================
    ICONO DEL DATO
-================================ */
+========================================= */
 
 .dato-icono {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   width: 43px;
-
   height: 43px;
 
   flex-shrink: 0;
@@ -388,9 +381,9 @@
 }
 
 
-/* ================================
+/* =========================================
    TÍTULO DEL DATO
-================================ */
+========================================= */
 
 .dato-titulo {
   display: block;
@@ -400,14 +393,13 @@
   color: #64748b;
 
   font-size: 11px;
-
   font-weight: 500;
 }
 
 
-/* ================================
+/* =========================================
    VALOR
-================================ */
+========================================= */
 
 .dato strong {
   display: block;
@@ -415,14 +407,13 @@
   color: #111827;
 
   font-size: 16px;
-
   font-weight: 700;
 }
 
 
-/* ================================
+/* =========================================
    ESTADOS
-================================ */
+========================================= */
 
 .estado-mensaje {
   display: flex;
@@ -430,7 +421,6 @@
   flex-direction: column;
 
   align-items: center;
-
   justify-content: center;
 
   min-height: 300px;
@@ -453,13 +443,12 @@
 }
 
 
-/* ================================
+/* =========================================
    SPINNER
-================================ */
+========================================= */
 
 .spinner {
   width: 38px;
-
   height: 38px;
 
   border: 4px solid #e5e7eb;
@@ -473,15 +462,17 @@
 
 
 @keyframes girar {
+
   to {
     transform: rotate(360deg);
   }
+
 }
 
 
-/* ================================
-   ANIMACIÓN TARJETA
-================================ */
+/* =========================================
+   ANIMACIÓN
+========================================= */
 
 @keyframes aparecer {
 
@@ -500,9 +491,9 @@
 }
 
 
-/* ================================
+/* =========================================
    RESPONSIVE
-================================ */
+========================================= */
 
 @media (max-width: 700px) {
 
@@ -536,7 +527,6 @@
 
   .bandera {
     width: 82px;
-
     height: 55px;
   }
 
@@ -550,7 +540,6 @@
 
   .icono-clima {
     width: 85px;
-
     height: 85px;
 
     font-size: 58px;
@@ -576,9 +565,9 @@
 }
 
 
-/* ================================
+/* =========================================
    MÓVIL PEQUEÑO
-================================ */
+========================================= */
 
 @media (max-width: 430px) {
 
@@ -589,7 +578,6 @@
 
   .bandera {
     width: 90px;
-
     height: 60px;
   }
 
@@ -601,7 +589,6 @@
 
   .icono-clima {
     width: 70px;
-
     height: 70px;
 
     font-size: 45px;
@@ -619,4 +606,136 @@
     padding: 15px;
   }
 
+}
+
+
+/* =========================================================
+   CLIMA DENTRO DEL MODAL
+   IMPORTANTE:
+   El modal ya es la tarjeta.
+   Aquí NO creamos una segunda tarjeta.
+========================================================= */
+
+.clima-en-modal {
+  width: 100%;
+
+  min-height: auto;
+
+  padding: 0;
+
+  background: transparent;
+}
+
+
+/* =========================================
+   ELIMINAR LA SEGUNDA TARJETA
+========================================= */
+
+.clima-en-modal .clima-card {
+  position: relative;
+
+  width: 100%;
+  max-width: none;
+
+  margin: 0;
+
+  padding: 28px;
+
+  box-sizing: border-box;
+
+  overflow: visible;
+
+  background: transparent;
+
+  border: none;
+
+  border-radius: 0;
+
+  box-shadow: none;
+
+  animation: none;
+}
+
+
+/* =========================================
+   DECORACIÓN DESACTIVADA EN MODAL
+   La decoración pertenece al modal.
+========================================= */
+
+.clima-en-modal .clima-card::before {
+  display: none;
+}
+
+
+/* =========================================
+   HEADER DEL CLIMA EN MODAL
+========================================= */
+
+.clima-en-modal .clima-header {
+  margin-bottom: 30px;
+}
+
+
+/* =========================================
+   CLIMA PRINCIPAL
+========================================= */
+
+.clima-en-modal .clima-principal {
+  margin-top: 0;
+}
+
+
+/* =========================================
+   DATOS
+========================================= */
+
+.clima-en-modal .datos-clima {
+  margin-bottom: 0;
+}
+
+
+/* =========================================
+   RESPONSIVE DEL CLIMA EN MODAL
+========================================= */
+
+@media (max-width: 700px) {
+
+  .clima-en-modal .clima-card {
+    padding: 24px 20px;
+  }
+
+}
+
+
+@media (max-width: 430px) {
+
+  .clima-en-modal .clima-card {
+    padding: 20px 16px;
+  }
+
+}
+/* =========================================
+   CLIMA DENTRO DEL MODAL
+========================================= */
+
+.clima-card.clima-en-modal {
+  width: 100%;
+
+  max-width: none;
+
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+  background: transparent;
+
+  border: none;
+
+  border-radius: 0;
+
+  box-shadow: none;
+
+  animation: none;
 }

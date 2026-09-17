@@ -1,342 +1,619 @@
-/* =========================================
-   PÁGINA DE DETALLE
-========================================= */
+/* =========================================================
+   CONTENEDOR PRINCIPAL
+========================================================= */
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
 
 .detalle-container {
-  min-height: 100vh;
   width: 100%;
-
+  min-height: 100%;
   box-sizing: border-box;
-
-  padding: 22px 25px 60px;
-
-  background-image:
-    linear-gradient(
-      rgba(248, 251, 255, 0.86),
-      rgba(248, 251, 255, 0.86)
-    ),
-    url('/mundo-fondo.png');
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
 
-/* =========================================
-   BOTÓN VOLVER
-========================================= */
+/* =========================================================
+   CUANDO ESTÁ DENTRO DEL MODAL
+========================================================= */
 
-.btn-volver {
-  display: inline-flex;
+.detalle-en-modal {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+}
 
+
+/* =========================================================
+   CONTENIDO DEL DETALLE
+========================================================= */
+
+.detalle-contenido {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+
+  padding: 34px 34px 32px;
+
+  overflow: hidden;
+
+  background: #f8fafc;
+}
+
+
+/* =========================================================
+   IDENTIDAD DEL PAÍS
+========================================================= */
+
+.detalle-identidad {
+  width: 100%;
+
+  min-height: 245px;
+
+  display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: space-between;
 
-  padding: 8px 13px;
+  gap: 30px;
 
-  border: 1px solid #d5e0eb;
+  box-sizing: border-box;
+}
 
-  border-radius: 8px;
 
-  background: rgba(255, 255, 255, 0.95);
+/* =========================================================
+   TEXTO
+========================================================= */
 
-  color: #37516c;
+.detalle-texto {
+  min-width: 0;
+  flex: 1;
+}
+
+
+.detalle-etiqueta {
+  display: block;
+
+  margin: 0 0 7px;
+
+  color: #8a9caf;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 1.4px;
+
+  line-height: 1.2;
+}
+
+
+.detalle-texto h1 {
+  margin: 0;
+
+  color: #172b4d;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 32px;
+  font-weight: 800;
+
+  line-height: 1.1;
+}
+
+
+.detalle-oficial {
+  margin: 9px 0 0;
+
+  color: #64748b;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
   font-size: 13px;
-  font-weight: 600;
 
-  cursor: pointer;
-
-  box-shadow:
-    0 3px 10px rgba(31, 65, 98, 0.05);
-
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.btn-volver:hover {
-  background: #f4f8fc;
-
-  border-color: #c4d3e2;
-
-  transform: translateX(-2px);
+  line-height: 1.5;
 }
 
 
-/* =========================================
-   TARJETA
-========================================= */
-
-.detalle-card {
-  width: 100%;
-
-  max-width: 760px;
-
-  margin: 30px auto 0;
-
-  padding: 32px;
-
-  box-sizing: border-box;
-
-  background: rgba(255, 255, 255, 0.94);
-
-  border: 1px solid rgba(225, 234, 243, 0.95);
-
-  border-radius: 20px;
-
-  box-shadow:
-    0 10px 35px rgba(31, 65, 98, 0.08);
-
-  text-align: center;
-}
-
-
-/* =========================================
+/* =========================================================
    BANDERA
-========================================= */
+========================================================= */
+
+.detalle-bandera-wrapper {
+  width: 190px;
+  height: 126px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 8px 22px rgba(15, 23, 42, 0.10);
+
+  animation: aparecerBandera 0.45s ease both;
+}
+
 
 .detalle-bandera {
   display: block;
 
   width: 100%;
+  height: 100%;
 
-  max-width: 470px;
-
-  height: auto;
-
-  margin: 0 auto 25px;
-
-  object-fit: contain;
-
-  border-radius: 12px;
-
-  border: 1px solid #e1e8ef;
-
-  box-shadow:
-    0 8px 25px rgba(31, 65, 98, 0.08);
+  object-fit: cover;
 }
 
 
-/* =========================================
-   TÍTULO
-========================================= */
+/* =========================================================
+   SEPARADOR
+========================================================= */
 
-.detalle-card h1 {
-  margin: 0;
+.detalle-separador {
+  width: 100%;
+  height: 1px;
 
-  color: #102a4c;
+  margin: 0 0 20px;
 
-  font-size: 30px;
-
-  font-weight: 800;
-
-  letter-spacing: -0.8px;
+  background: #e8eef5;
 }
 
 
-/* =========================================
-   NOMBRE OFICIAL
-========================================= */
-
-.detalle-oficial {
-  margin: 7px 0 25px;
-
-  color: #71839a;
-
-  font-size: 13px;
-}
-
-
-/* =========================================
-   LISTA DE DATOS
-========================================= */
+/* =========================================================
+   GRID DE CARDS
+========================================================= */
 
 .detalle-lista {
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: 11px;
+  width: 100%;
 
   margin: 0;
+  padding: 0;
 
-  text-align: left;
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+
+  box-sizing: border-box;
 }
 
 
-/* =========================================
-   ITEM
-========================================= */
+/* =========================================================
+   CARD
+========================================================= */
 
 .detalle-item {
-  padding: 15px;
+  min-width: 0;
+  min-height: 88px;
 
-  background: #f8fbff;
-
-  border: 1px solid #e4edf6;
-
-  border-radius: 11px;
-}
-
-
-/* =========================================
-   ETIQUETA
-========================================= */
-
-.detalle-item dt {
-  margin-bottom: 5px;
-
-  color: #7b8fa4;
-
-  font-size: 11px;
-
-  font-weight: 700;
-
-  text-transform: uppercase;
-
-  letter-spacing: 0.4px;
-}
-
-
-/* =========================================
-   VALOR
-========================================= */
-
-.detalle-item dt {
   display: flex;
   align-items: center;
-  gap: 7px;
 
-  margin-bottom: 6px;
+  gap: 14px;
 
-  color: #7b8fa4;
+  padding: 14px;
 
-  font-size: 11px;
+  box-sizing: border-box;
 
-  font-weight: 700;
+  border: 1px solid #e5ebf2;
 
-  text-transform: uppercase;
+  border-radius: 15px;
 
-  letter-spacing: 0.4px;
+  background: rgba(255, 255, 255, 0.72);
+
+  box-shadow:
+    0 4px 14px rgba(15, 23, 42, 0.035);
+
+  opacity: 0;
+
+  transform: translateY(10px);
+
+  animation:
+    aparecerCard 0.4s ease forwards;
+
+  animation-delay: var(--delay, 0s);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
 }
 
-.detalle-icon {
-  width: 15px;
-  height: 15px;
+
+.detalle-item:hover {
+  transform: translateY(-2px);
+
+  border-color: #d9e3ee;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 9px 22px rgba(15, 23, 42, 0.07);
+}
+
+
+/* =========================================================
+   ICONO DE CARD
+========================================================= */
+
+/* =========================================
+   ICONOS DE LAS CARDS
+   ========================================= */
+
+.detalle-icon.emoji-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   flex-shrink: 0;
 
-  fill: none;
+  border-radius: 12px;
 
-  stroke: currentColor;
+  background: #ffffff;
 
-  stroke-width: 1.7;
+  font-size: 21px;
+  line-height: 1;
 
-  stroke-linecap: round;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
 
-  stroke-linejoin: round;
+  border: 1px solid #edf2f7;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.detalle-item:hover .detalle-icon.emoji-icon {
+  transform: scale(1.08);
+
+  box-shadow: 0 7px 16px rgba(15, 23, 42, 0.12);
 }
 
 
-/* =========================================
-   CARGANDO / ERROR
-========================================= */
+/* =========================================================
+   TEXTO DE CARD
+========================================================= */
+
+.detalle-item-text {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+
+.detalle-item dt {
+  margin: 0;
+
+  color: #8493a8;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+
+.detalle-item dd {
+  margin: 0;
+
+  color: #172b4d;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  line-height: 1.25;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   BOTÓN VOLVER
+   SOLO CUANDO NO ESTÁ EN MODAL
+========================================================= */
+
+.btn-volver {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 20px;
+
+  padding: 10px 16px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #f1f5f9;
+
+  color: #475569;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.btn-volver:hover {
+  background: #e2e8f0;
+
+  transform: translateX(-2px);
+}
+
+
+/* =========================================================
+   ESTADOS
+========================================================= */
 
 .estado-mensaje {
-  display: flex;
+  width: 100%;
+  height: 100%;
 
+  display: flex;
   flex-direction: column;
 
   align-items: center;
-
   justify-content: center;
 
-  min-height: 180px;
+  gap: 12px;
 
-  text-align: center;
+  color: #64748b;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 }
+
 
 .estado-mensaje p {
-  margin: 10px 0 0;
-
-  color: #8a9caf;
-
-  font-size: 14px;
+  margin: 0;
 }
 
 
-/* =========================================
-   SPINNER
-========================================= */
-
 .spinner {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
 
-  border: 3px solid #dbe5ef;
+  border: 3px solid #e2e8f0;
 
-  border-top-color: #1769e0;
+  border-top-color: #54c78a;
 
   border-radius: 50%;
 
   animation: girar 0.8s linear infinite;
 }
 
+
+.error {
+  color: #b91c1c;
+}
+
+
+/* =========================================================
+   ANIMACIONES
+========================================================= */
+
+@keyframes aparecerBandera {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(8px)
+      scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+@keyframes aparecerCard {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
 @keyframes girar {
+
   to {
     transform: rotate(360deg);
   }
+
 }
 
 
-/* =========================================
-   ERROR
-========================================= */
+/* =========================================================
+   TABLET
+========================================================= */
 
-.error p {
-  color: #c0392b;
+@media (max-width: 650px) {
+
+  .detalle-contenido {
+    padding: 28px 24px;
+  }
+
+
+  .detalle-identidad {
+    min-height: 210px;
+
+    gap: 20px;
+  }
+
+
+  .detalle-texto h1 {
+    font-size: 28px;
+  }
+
+
+  .detalle-bandera-wrapper {
+    width: 150px;
+    height: 100px;
+  }
+
+
+  .detalle-lista {
+    gap: 10px;
+  }
+
 }
 
 
-/* =========================================
+/* =========================================================
    MÓVIL
-========================================= */
+========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
 
-  .detalle-container {
-    padding: 18px 18px 45px;
-
-    background-attachment: scroll;
+  .detalle-contenido {
+    padding: 24px 18px;
   }
 
-  .detalle-card {
-    margin-top: 22px;
 
-    padding: 22px 18px;
+  .detalle-identidad {
+    min-height: auto;
 
-    border-radius: 17px;
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 20px;
   }
 
-  .detalle-bandera {
-    max-width: 100%;
 
-    margin-bottom: 22px;
+  .detalle-bandera-wrapper {
+    width: 100%;
+    height: auto;
+
+    aspect-ratio: 16 / 9;
   }
 
-  .detalle-card h1 {
+
+  .detalle-texto h1 {
     font-size: 27px;
   }
+
 
   .detalle-lista {
     grid-template-columns: 1fr;
   }
 
-  .btn-volver {
-    padding: 8px 12px;
+
+  .detalle-item {
+    min-height: 82px;
   }
+
+}
+
+
+/* =========================================================
+   MÓVIL PEQUEÑO
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .detalle-contenido {
+    padding: 20px 14px;
+  }
+
+
+  .detalle-texto h1 {
+    font-size: 24px;
+  }
+
+
+  .detalle-oficial {
+    font-size: 12px;
+  }
+
+
+  .detalle-item-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+
+  .detalle-item dd {
+    font-size: 13px;
+  }
+
 }

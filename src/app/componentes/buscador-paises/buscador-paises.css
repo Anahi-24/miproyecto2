@@ -6,25 +6,30 @@
   min-height: 100vh;
   width: 100%;
   box-sizing: border-box;
-
   padding: 40px 25px 70px;
 
   background:
     radial-gradient(
-      circle at 15% 20%,
-      rgba(84, 199, 138, 0.16),
+      circle at 10% 10%,
+      rgba(84, 199, 138, 0.28),
       transparent 28%
     ),
     radial-gradient(
-      circle at 85% 15%,
+      circle at 90% 15%,
+      rgba(35, 136, 223, 0.30),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
       rgba(35, 136, 223, 0.18),
-      transparent 30%
+      transparent 38%
     ),
     linear-gradient(
-      rgba(245, 249, 255, 0.76),
-      rgba(245, 249, 255, 0.76)
-    ),
-    url('/mundo-fondo.png');
+      135deg,
+      #dcecf8 0%,
+      #cfe4f4 45%,
+      #d9eee7 100%
+    );
 
   background-size: cover;
   background-position: center;
@@ -36,13 +41,12 @@
 
 
 /* =========================================
-   LOGO MUNDO + LUPA
+   LOGO / GIF DEL PLANETA
 ========================================= */
 
 .logo-paises {
-  width: 105px;
-  height: 105px;
-
+  width: 190px;
+  height: 190px;
   margin: 0 auto 4px;
 
   transition:
@@ -51,68 +55,22 @@
     transform 0.5s ease;
 }
 
-
-/* =========================================
-   GIF DEL PLANETA
-========================================= */
-
 .logo-paises img {
   width: 100%;
   height: 100%;
-
   display: block;
-
   object-fit: contain;
 
-  border-radius: 50%;
+  filter:
+    drop-shadow(
+      0 14px 20px rgba(22, 73, 112, 0.22)
+    );
 
   transition:
     width 0.5s ease,
     height 0.5s ease,
-    transform 0.5s ease;
-
-  filter:
-    drop-shadow(0 8px 14px rgba(31, 65, 98, 0.16));
-}
-
-
-/* =========================================
-   GLOBO
-========================================= */
-
-.globo-circulo {
-  fill: #2388df;
-}
-
-
-/* =========================================
-   CONTINENTES
-========================================= */
-
-.globo-tierra {
-  fill: #54c78a;
-}
-
-
-/* =========================================
-   LUPA DEL LOGO
-========================================= */
-
-.logo-lupa {
-  fill: #ffffff;
-  stroke: #172b4d;
-  stroke-width: 3.5;
-}
-
-
-/* =========================================
-   MANGO DE LA LUPA
-========================================= */
-
-.logo-lupa-line {
-  stroke: #172b4d;
-  stroke-width: 4.5;
-  stroke-linecap: round;
+    transform 0.5s ease,
+    filter 0.5s ease;
 }
 
 
@@ -122,22 +80,17 @@
 
 .buscador-header {
   text-align: center;
-
   margin-bottom: 24px;
 
   transition:
     margin-bottom 0.45s ease;
 }
 
-
 .buscador-header h1 {
   margin: 0;
-
   color: #102a4c;
-
   font-size: 40px;
   font-weight: 800;
-
   letter-spacing: -1.4px;
 
   transition:
@@ -145,12 +98,9 @@
     transform 0.45s ease;
 }
 
-
 .buscador-header p {
   margin: 9px 0 0;
-
-  color: #667f99;
-
+  color: #55718c;
   font-size: 14px;
 
   transition:
@@ -166,12 +116,9 @@
 
 .search-box {
   position: relative;
-
   width: 100%;
-  max-width: 620px;
-
-  height: 56px;
-
+  max-width: 650px;
+  height: 60px;
   margin: 0 auto 38px;
 
   transition:
@@ -182,30 +129,25 @@
 
 
 /* =========================================
-   LUPA DENTRO DEL INPUT
+   LUPA DEL INPUT
 ========================================= */
 
 .search-icon {
   position: absolute;
-
-  left: 18px;
+  left: 19px;
   top: 50%;
 
-  width: 18px;
-  height: 18px;
+  width: 19px;
+  height: 19px;
 
   transform: translateY(-50%);
 
   fill: none;
-
   stroke: #5e83a7;
-
   stroke-width: 1.8;
-
   stroke-linecap: round;
 
   pointer-events: none;
-
   z-index: 2;
 }
 
@@ -217,51 +159,49 @@
 .search-input {
   width: 100%;
   height: 100%;
-
   box-sizing: border-box;
 
-  /* Espacio para la lupa izquierda y la X derecha */
-  padding: 0 55px 0 48px;
+  padding: 0 58px 0 50px;
 
   border: 2px solid rgba(215, 228, 241, 0.9);
-
-  border-radius: 30px;
-
+  border-radius: 32px;
   outline: none;
 
-  background: rgba(255, 255, 255, 0.96);
-
+  background: rgba(255, 255, 255, 0.88);
   color: #243b53;
 
-  font-size: 14px;
+  font-size: 15px;
 
   box-shadow:
-    0 10px 30px rgba(44, 91, 132, 0.10),
+    0 10px 30px rgba(44, 91, 132, 0.12),
     0 2px 6px rgba(44, 91, 132, 0.05);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
   transition:
     border-color 0.25s ease,
     box-shadow 0.25s ease,
-    transform 0.25s ease;
+    transform 0.25s ease,
+    background 0.25s ease;
 }
-
 
 .search-input::placeholder {
-  color: #9aabc0;
+  color: #8fa4b8;
 }
-
 
 .search-input:hover {
   border-color: #bcd1e5;
 }
 
-
 .search-input:focus {
   border-color: #4b9bea;
 
+  background: rgba(255, 255, 255, 0.96);
+
   box-shadow:
     0 0 0 4px rgba(35, 136, 223, 0.13),
-    0 14px 32px rgba(44, 91, 132, 0.14);
+    0 14px 32px rgba(44, 91, 132, 0.16);
 
   transform: translateY(-1px);
 }
@@ -273,7 +213,6 @@
 
 .btn-limpiar {
   position: absolute;
-
   right: 13px;
   top: 50%;
 
@@ -283,22 +222,18 @@
   transform: translateY(-50%);
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
   padding: 0;
 
   border: none;
-
   border-radius: 50%;
 
   background: #eef3f8;
-
   color: #6f8499;
 
   cursor: pointer;
-
   z-index: 3;
 
   transition:
@@ -307,31 +242,28 @@
     transform 0.2s ease;
 }
 
-
 .btn-limpiar:hover {
   background: #dfe9f3;
-
   color: #19324d;
 
-  transform: translateY(-50%) scale(1.08);
+  transform:
+    translateY(-50%)
+    scale(1.08);
 }
-
 
 .btn-limpiar:active {
-  transform: translateY(-50%) scale(0.94);
+  transform:
+    translateY(-50%)
+    scale(0.94);
 }
-
 
 .btn-limpiar svg {
   width: 15px;
   height: 15px;
 
   fill: none;
-
   stroke: currentColor;
-
   stroke-width: 2;
-
   stroke-linecap: round;
 }
 
@@ -350,20 +282,19 @@
 ========================================= */
 
 .buscador-container.hay-resultados .logo-paises {
-  width: 72px;
-  height: 72px;
-
+  width: 120px;
+  height: 120px;
   margin-bottom: 0;
 }
-
-
-/* =========================================
-   GIF MÁS PEQUEÑO AL BUSCAR
-========================================= */
 
 .buscador-container.hay-resultados .logo-paises img {
   width: 100%;
   height: 100%;
+
+  filter:
+    drop-shadow(
+      0 8px 14px rgba(22, 73, 112, 0.18)
+    );
 }
 
 
@@ -374,7 +305,6 @@
 .buscador-container.hay-resultados .buscador-header {
   margin-bottom: 17px;
 }
-
 
 .buscador-container.hay-resultados .buscador-header h1 {
   font-size: 32px;
@@ -387,11 +317,8 @@
 
 .buscador-container.hay-resultados .buscador-header p {
   opacity: 0;
-
   height: 0;
-
   margin: 0;
-
   overflow: hidden;
 }
 
@@ -401,8 +328,7 @@
 ========================================= */
 
 .buscador-container.hay-resultados .search-box {
-  max-width: 700px;
-
+  max-width: 720px;
   margin-bottom: 30px;
 }
 
@@ -413,55 +339,57 @@
 
 .resultados-lista {
   display: flex;
-
   flex-direction: column;
-
   gap: 14px;
 
   width: 100%;
-
-  max-width: 850px;
+  max-width: 900px;
 
   margin: 0 auto;
 
-  animation: aparecerResultados 0.45s ease;
+  animation:
+    aparecerResultados 0.45s ease;
 }
 
 
 /* =========================================
-   FILA DE PAÍS
+   FILA DE PAÍS - GLASSMORPHISM
 ========================================= */
 
 .pais-fila {
   position: relative;
 
   display: flex;
-
   align-items: center;
 
-  gap: 18px;
+  gap: 20px;
 
-  min-height: 82px;
+  min-height: 88px;
 
-  padding: 13px 17px;
+  padding: 15px 19px;
 
   box-sizing: border-box;
 
-  background: rgba(255, 255, 255, 0.97);
+  background: rgba(255, 255, 255, 0.60);
 
-  border: 1px solid #e1ebf4;
+  border: 1px solid rgba(255, 255, 255, 0.72);
 
   border-radius: 18px;
 
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
   box-shadow:
-    0 7px 20px rgba(31, 65, 98, 0.07);
+    0 10px 30px rgba(31, 65, 98, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
 
   overflow: hidden;
 
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
-    border-color 0.25s ease;
+    border-color 0.25s ease,
+    background 0.25s ease;
 }
 
 
@@ -480,11 +408,12 @@
 
   width: 4px;
 
-  background: linear-gradient(
-    to bottom,
-    #2388df,
-    #54c78a
-  );
+  background:
+    linear-gradient(
+      to bottom,
+      #2388df,
+      #54c78a
+    );
 }
 
 
@@ -495,10 +424,15 @@
 .pais-fila:hover {
   transform: translateY(-3px);
 
-  border-color: #cfe0ee;
+  border-color:
+    rgba(255, 255, 255, 0.95);
+
+  background:
+    rgba(255, 255, 255, 0.72);
 
   box-shadow:
-    0 12px 28px rgba(31, 65, 98, 0.11);
+    0 15px 34px rgba(31, 65, 98, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.70);
 }
 
 
@@ -507,8 +441,8 @@
 ========================================= */
 
 .pais-bandera {
-  width: 68px;
-  height: 46px;
+  width: 72px;
+  height: 48px;
 
   flex-shrink: 0;
 
@@ -516,10 +450,27 @@
 
   border-radius: 9px;
 
-  border: 1px solid #dce6ef;
+  border:
+    1px solid rgba(220, 230, 239, 0.90);
 
   box-shadow:
-    0 3px 9px rgba(31, 65, 98, 0.10);
+    0 4px 10px rgba(31, 65, 98, 0.12);
+}
+
+
+/* =========================================
+   INFORMACIÓN DEL PAÍS
+========================================= */
+
+.pais-info {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  min-width: 0;
 }
 
 
@@ -528,17 +479,38 @@
 ========================================= */
 
 .pais-nombre {
-  flex: 1;
-
   margin: 0;
 
   color: #19324d;
 
-  font-size: 16px;
-
+  font-size: 17px;
   font-weight: 700;
 
   line-height: 1.3;
+}
+
+
+/* =========================================
+   CÓDIGO DEL PAÍS
+========================================= */
+
+.pais-codigo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 4px 8px;
+
+  border-radius: 7px;
+
+  background: rgba(35, 136, 223, 0.10);
+
+  color: #3477a8;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
 }
 
 
@@ -548,37 +520,18 @@
 
 .pais-acciones {
   display: flex;
-
   align-items: center;
 
   gap: 8px;
+
+  margin-left: auto;
+
+  flex-shrink: 0;
 }
 
 
 /* =========================================
    BOTONES
-========================================= */
-
-.btn-accion {
-  padding: 9px 14px;
-
-  border-radius: 10px;
-
-  font-size: 13px;
-
-  font-weight: 700;
-
-  cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-/* =========================================
-   ICONOS DE LOS BOTONES
 ========================================= */
 
 .btn-accion {
@@ -588,8 +541,29 @@
   justify-content: center;
 
   gap: 7px;
+
+  padding: 10px 15px;
+
+  border-radius: 10px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
+
+/* =========================================
+   ICONOS DE LOS BOTONES
+========================================= */
 
 .icono-boton {
   width: 16px;
@@ -598,46 +572,28 @@
   flex-shrink: 0;
 
   fill: none;
-
   stroke: currentColor;
 
   stroke-width: 1.8;
 
   stroke-linecap: round;
-
   stroke-linejoin: round;
 
   transition:
     transform 0.2s ease;
 }
 
-
-/* =========================================
-   ANIMACIÓN DEL ICONO
-========================================= */
-
 .btn-accion:hover .icono-boton {
   transform: scale(1.12);
 }
-
-
-/* =========================================
-   ICONO DETALLES
-========================================= */
 
 .btn-detalles .icono-boton {
   stroke-width: 1.9;
 }
 
-
-/* =========================================
-   ICONO CLIMA
-========================================= */
-
 .btn-clima .icono-boton {
   stroke-width: 1.7;
 }
-
 
 .btn-accion:hover {
   transform: translateY(-1px);
@@ -659,7 +615,6 @@
     0 4px 10px rgba(23, 105, 224, 0.18);
 }
 
-
 .btn-detalles:hover {
   background: #125bc5;
 
@@ -675,14 +630,16 @@
 .btn-clima {
   border: 1px solid #d5e0eb;
 
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.70);
 
   color: #37516c;
+
+  box-shadow:
+    0 3px 8px rgba(31, 65, 98, 0.05);
 }
 
-
 .btn-clima:hover {
-  background: #f1f7fd;
+  background: rgba(241, 247, 253, 0.95);
 
   border-color: #b9cee2;
 }
@@ -698,7 +655,6 @@
   flex-direction: column;
 
   align-items: center;
-
   justify-content: center;
 
   text-align: center;
@@ -706,11 +662,10 @@
   min-height: 100px;
 }
 
-
 .estado-mensaje p {
   margin: 0;
 
-  color: #8094a9;
+  color: #6f879d;
 
   font-size: 14px;
 }
@@ -722,7 +677,6 @@
 
 .vacio {
   background: transparent;
-
   border: none;
 }
 
@@ -737,7 +691,6 @@
   stroke: #6f98bc;
 
   stroke-linecap: round;
-
   stroke-linejoin: round;
 }
 
@@ -751,9 +704,9 @@
 
   min-height: 130px;
 
-  animation: aparecerResultados 0.35s ease;
+  animation:
+    aparecerResultados 0.35s ease;
 }
-
 
 .lupa-estado {
   width: 34px;
@@ -766,10 +719,8 @@
   opacity: 0.75;
 }
 
-
 .sin-resultados p {
   color: #8296aa;
-
   font-size: 14px;
 }
 
@@ -784,7 +735,6 @@
   min-height: 145px;
 }
 
-
 .lupa-grande {
   width: 42px;
   height: 42px;
@@ -796,12 +746,10 @@
   opacity: 0.65;
 }
 
-
 .mensaje-inicial p {
   color: #8295aa;
 
   font-size: 14px;
-
   font-weight: 500;
 }
 
@@ -813,7 +761,6 @@
 .error {
   min-height: 130px;
 }
-
 
 .error-icon {
   width: 32px;
@@ -829,7 +776,6 @@
 
   stroke-linecap: round;
 }
-
 
 .error p {
   color: #c0392b;
@@ -850,7 +796,8 @@
 
   border-radius: 50%;
 
-  animation: girar 0.8s linear infinite;
+  animation:
+    girar 0.8s linear infinite;
 }
 
 
@@ -873,13 +820,15 @@
   from {
     opacity: 0;
 
-    transform: translateY(12px);
+    transform:
+      translateY(12px);
   }
 
   to {
     opacity: 1;
 
-    transform: translateY(0);
+    transform:
+      translateY(0);
   }
 }
 
@@ -891,84 +840,97 @@
 @media (max-width: 600px) {
 
   .buscador-container {
-    padding: 30px 18px 50px;
+    padding:
+      30px 18px 50px;
 
     background-attachment: scroll;
   }
 
 
-  /* Logo */
+  /* LOGO */
 
   .logo-paises {
-    width: 90px;
-    height: 90px;
+    width: 120px;
+    height: 120px;
   }
 
 
-  /* Título */
+  /* TÍTULO */
 
   .buscador-header h1 {
     font-size: 31px;
   }
 
-
   .buscador-header p {
     font-size: 13px;
-
     line-height: 1.5;
   }
 
 
-  /* Buscador */
+  /* BUSCADOR */
 
   .search-box {
-    height: 52px;
+    height: 54px;
   }
 
 
-  /* Estado con búsqueda */
+  /* ESTADO CON BÚSQUEDA */
 
   .buscador-container.hay-resultados {
     padding-top: 15px;
   }
 
-
   .buscador-container.hay-resultados .logo-paises {
-    width: 62px;
-    height: 62px;
+    width: 75px;
+    height: 75px;
   }
-
 
   .buscador-container.hay-resultados .buscador-header h1 {
     font-size: 27px;
   }
 
 
-  /* País */
+  /* PAÍS */
 
   .pais-fila {
     display: grid;
 
-    grid-template-columns: auto 1fr;
+    grid-template-columns:
+      auto 1fr;
 
     gap: 12px;
 
-    padding: 13px;
+    padding: 14px;
   }
 
 
-  /* Acciones */
+  /* INFORMACIÓN */
+
+  .pais-info {
+    gap: 7px;
+  }
+
+  .pais-nombre {
+    font-size: 16px;
+  }
+
+
+  /* ACCIONES EN MÓVIL */
 
   .pais-acciones {
     grid-column: 1 / -1;
 
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+      1fr 1fr;
 
     width: 100%;
-  }
 
+    gap: 8px;
+
+    margin-left: 0;
+  }
 
   .btn-accion {
     width: 100%;
@@ -984,15 +946,19 @@
 
   .buscador-container {
     padding-left: 14px;
-
     padding-right: 14px;
+  }
+
+
+  .logo-paises {
+    width: 105px;
+    height: 105px;
   }
 
 
   .buscador-header h1 {
     font-size: 27px;
   }
-
 
   .buscador-header p {
     font-size: 12px;
@@ -1004,9 +970,13 @@
     height: 40px;
   }
 
-
   .pais-nombre {
     font-size: 15px;
+  }
+
+  .pais-codigo {
+    font-size: 10px;
+    padding: 3px 6px;
   }
 
 

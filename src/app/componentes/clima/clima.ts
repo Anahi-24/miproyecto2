@@ -1,11 +1,22 @@
-import { Component, inject, signal } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  inject,
+  signal
+} from '@angular/core';
+
 import { ActivatedRoute, Router } from '@angular/router';
+import { DecimalPipe } from '@angular/common';
 
 import { PaisesService } from '../../services/paises.service';
 import { ClimaService } from '../../services/clima.service';
 import { Pais } from '../../models/pais.interface';
-import { ClimaResponse, GeocodingResult } from '../../models/clima.interface';
-import { DecimalPipe } from '@angular/common';
+import {
+  ClimaResponse,
+  GeocodingResult
+} from '../../models/clima.interface';
 
 @Component({
   selector: 'app-clima',
@@ -14,12 +25,19 @@ import { DecimalPipe } from '@angular/common';
   templateUrl: './clima.html',
   styleUrl: './clima.css'
 })
-export class ClimaComponent {
+export class ClimaComponent implements OnChanges {
 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private paisesService = inject(PaisesService);
   private climaService = inject(ClimaService);
+
+  /*
+   * Este Input permite que el componente reciba
+   * el código del país desde modal-pais.
+   */
+  @Input() codigoPais: string | null = null;
+  @Input() dentroModal = false;
 
   pais = signal<Pais | null>(null);
   ubicacion = signal<GeocodingResult | null>(null);
@@ -28,125 +46,170 @@ export class ClimaComponent {
   cargando = signal(true);
   error = signal<string | null>(null);
 
-  constructor() {
+  /*
+   * Se ejecuta cuando cambia el código recibido
+   * desde el modal.
+   */
+  ngOnChanges(changes: SimpleChanges): void {
 
-    const codigo = this.route.snapshot.paramMap.get('codigo');
-
-    if (!codigo) {
-      this.error.set('Código de país no válido');
-      this.cargando.set(false);
-      return;
+    if (changes['codigoPais'] && this.codigoPais) {
+      this.cargarClima(this.codigoPais);
     }
 
-    this.cargarClima(codigo);
+  }
+
+  constructor() {
+
+    /*
+     * Si el componente se utiliza mediante la ruta
+     * /clima/:codigo, usamos el código de la URL.
+     *
+     * Si se utiliza dentro del modal, ngOnChanges()
+     * se encargará de cargarlo mediante codigoPais.
+     */
+    const codigoRuta = this.route.snapshot.paramMap.get('codigo');
+
+    if (codigoRuta && !this.codigoPais) {
+      this.cargarClima(codigoRuta);
+    }
+
   }
 
   private cargarClima(codigo: string): void {
 
-  console.log('1. Iniciando carga del clima. Código:', codigo);
+    this.cargando.set(true);
+    this.error.set(null);
+    this.clima.set(null);
+    this.ubicacion.set(null);
 
-  this.paisesService.buscarPorCodigo(codigo).subscribe({
+    console.log('1. Iniciando carga del clima. Código:', codigo);
 
-    next: (resultados) => {
+    this.paisesService.buscarPorCodigo(codigo).subscribe({
 
-      console.log('2. País recibido:', resultados);
+      next: (resultados) => {
 
-      const paisEncontrado = resultados[0];
+        console.log('2. País recibido:', resultados);
 
-      if (!paisEncontrado) {
-        console.log('3. No se encontró el país');
+        const paisEncontrado = resultados[0];
 
-        this.error.set('No se encontró el país');
-        this.cargando.set(false);
-        return;
-      }
+        if (!paisEncontrado) {
 
-      this.pais.set(paisEncontrado);
+          console.log('3. No se encontró el país');
 
-      const nombrePais = this.nombreEnEspanol(paisEncontrado);
-
-      console.log('3. País encontrado:', nombrePais);
-      console.log('4. Buscando ubicación en Open-Meteo...');
-
-      this.climaService.buscarUbicacion(nombrePais).subscribe({
-
-        next: (ubicacion) => {
-
-          console.log('5. Ubicación encontrada:', ubicacion);
-          console.log(
-            '6. Coordenadas:',
-            ubicacion.latitude,
-            ubicacion.longitude
-          );
-
-          this.ubicacion.set(ubicacion);
-
-          console.log('7. Consultando clima...');
-
-          this.climaService
-            .obtenerClima(
-              ubicacion.latitude,
-              ubicacion.longitude
-            )
-            .subscribe({
-
-              next: (datosClima) => {
-
-                console.log('8. CLIMA RECIBIDO:', datosClima);
-
-                this.clima.set(datosClima);
-                this.cargando.set(false);
-              },
-
-              error: (error) => {
-
-                console.error('ERROR 8. Obteniendo clima:', error);
-
-                this.error.set(
-                  'No se pudo obtener la información del clima'
-                );
-
-                this.cargando.set(false);
-              }
-
-            });
-        },
-
-        error: (error) => {
-
-          console.error('ERROR 5. Buscando ubicación:', error);
-
-          this.error.set(
-            'No se pudo encontrar la ubicación del país'
-          );
-
+          this.error.set('No se encontró el país');
           this.cargando.set(false);
+
+          return;
         }
 
-      });
-    },
+        this.pais.set(paisEncontrado);
 
-    error: (error) => {
+        const nombrePais = this.nombreEnEspanol(paisEncontrado);
 
-      console.error('ERROR 2. Obteniendo país:', error);
+        console.log('3. País encontrado:', nombrePais);
+        console.log('4. Buscando ubicación en Open-Meteo...');
 
-      this.error.set(
-        'No se pudo cargar la información del país'
-      );
+        this.climaService.buscarUbicacion(nombrePais).subscribe({
 
-      this.cargando.set(false);
-    }
+          next: (ubicacion) => {
 
-  });
-}
+            console.log('5. Ubicación encontrada:', ubicacion);
+            console.log(
+              '6. Coordenadas:',
+              ubicacion.latitude,
+              ubicacion.longitude
+            );
+
+            this.ubicacion.set(ubicacion);
+
+            console.log('7. Consultando clima...');
+
+            this.climaService
+              .obtenerClima(
+                ubicacion.latitude,
+                ubicacion.longitude
+              )
+              .subscribe({
+
+                next: (datosClima) => {
+
+                  console.log('8. CLIMA RECIBIDO:', datosClima);
+
+                  this.clima.set(datosClima);
+                  this.cargando.set(false);
+
+                },
+
+                error: (error) => {
+
+                  console.error(
+                    'ERROR 8. Obteniendo clima:',
+                    error
+                  );
+
+                  this.error.set(
+                    'No se pudo obtener la información del clima'
+                  );
+
+                  this.cargando.set(false);
+
+                }
+
+              });
+
+          },
+
+          error: (error) => {
+
+            console.error(
+              'ERROR 5. Buscando ubicación:',
+              error
+            );
+
+            this.error.set(
+              'No se pudo encontrar la ubicación del país'
+            );
+
+            this.cargando.set(false);
+
+          }
+
+        });
+
+      },
+
+      error: (error) => {
+
+        console.error(
+          'ERROR 2. Obteniendo país:',
+          error
+        );
+
+        this.error.set(
+          'No se pudo cargar la información del país'
+        );
+
+        this.cargando.set(false);
+
+      }
+
+    });
+
+  }
 
   nombreEnEspanol(pais: Pais): string {
-    return pais.names.translations?.['spa']?.common
-      ?? pais.names.common;
+
+    return (
+      pais.names.translations?.['spa']?.common ??
+      pais.names.common
+    );
+
   }
 
   volver(): void {
+
     this.router.navigate(['/']);
+
   }
 
   obtenerDescripcionClima(codigo: number): string {
@@ -154,47 +217,38 @@ export class ClimaComponent {
     const descripciones: Record<number, string> = {
 
       0: 'Cielo despejado',
-
       1: 'Principalmente despejado',
       2: 'Parcialmente nublado',
       3: 'Nublado',
-
       45: 'Niebla',
       48: 'Niebla con escarcha',
-
       51: 'Llovizna ligera',
       53: 'Llovizna moderada',
       55: 'Llovizna intensa',
-
       56: 'Llovizna helada ligera',
       57: 'Llovizna helada intensa',
-
       61: 'Lluvia ligera',
       63: 'Lluvia moderada',
       65: 'Lluvia intensa',
-
       66: 'Lluvia helada ligera',
       67: 'Lluvia helada intensa',
-
       71: 'Nevada ligera',
       73: 'Nevada moderada',
       75: 'Nevada intensa',
-
       77: 'Granos de nieve',
-
       80: 'Chubascos ligeros',
       81: 'Chubascos moderados',
       82: 'Chubascos intensos',
-
       85: 'Chubascos de nieve ligeros',
       86: 'Chubascos de nieve intensos',
-
       95: 'Tormenta eléctrica',
       96: 'Tormenta con granizo ligero',
       99: 'Tormenta con granizo intenso'
+
     };
 
     return descripciones[codigo] ?? 'Condición desconocida';
+
   }
 
   obtenerIconoClima(codigo: number): string {
@@ -208,24 +262,39 @@ export class ClimaComponent {
     if ([45, 48].includes(codigo)) return '🌫️';
 
     if (
-      [51, 53, 55, 56, 57,
-       61, 63, 65, 66, 67,
-       80, 81, 82].includes(codigo)
+      [
+        51,
+        53,
+        55,
+        56,
+        57,
+        61,
+        63,
+        65,
+        66,
+        67,
+        80,
+        81,
+        82
+      ].includes(codigo)
     ) {
       return '🌧️';
     }
 
     if (
-      [71, 73, 75, 77,
-       85, 86].includes(codigo)
+      [71, 73, 75, 77, 85, 86].includes(codigo)
     ) {
       return '❄️';
     }
 
-    if ([95, 96, 99].includes(codigo)) {
+    if (
+      [95, 96, 99].includes(codigo)
+    ) {
       return '⛈️';
     }
 
     return '🌡️';
+
   }
+
 }

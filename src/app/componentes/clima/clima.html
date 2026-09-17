@@ -1,11 +1,17 @@
-<div class="clima-container">
+<div
+  class="clima-container"
+  [class.clima-en-modal]="dentroModal"
+>
 
-  <button
-    type="button"
-    class="btn-volver"
-    (click)="volver()">
-    ← Volver
-  </button>
+  @if (!dentroModal) {
+    <button
+      type="button"
+      class="btn-volver"
+      (click)="volver()"
+    >
+      ← Volver
+    </button>
+  }
 
   @if (cargando()) {
 
@@ -35,7 +41,10 @@
 
   @if (!cargando() && !error() && clima(); as c) {
 
-    <div class="clima-card">
+    <div
+  class="clima-card"
+  [class.clima-en-modal]="dentroModal"
+>
 
       @if (pais(); as p) {
 
@@ -54,10 +63,13 @@
             @if (ubicacion(); as u) {
 
               <p class="ubicacion">
+
                 {{ u.name }}
+
                 @if (u.country) {
                   · {{ u.country }}
                 }
+
               </p>
 
             }
@@ -66,7 +78,10 @@
 
           <img
             [src]="p.flag.url_png"
-            [alt]="p.flag.description || 'Bandera de ' + nombreEnEspanol(p)"
+            [alt]="
+              p.flag.description ||
+              'Bandera de ' + nombreEnEspanol(p)
+            "
             class="bandera"
           />
 
@@ -74,12 +89,11 @@
 
       }
 
+
       <div class="clima-principal">
 
         <div class="icono-clima">
-
           {{ obtenerIconoClima(c.current.weather_code) }}
-
         </div>
 
         <div>
@@ -100,11 +114,14 @@
 
       </div>
 
+
       <div class="datos-clima">
 
         <div class="dato">
 
-          <span class="dato-icono">💧</span>
+          <span class="dato-icono">
+            💧
+          </span>
 
           <div>
 
@@ -120,9 +137,12 @@
 
         </div>
 
+
         <div class="dato">
 
-          <span class="dato-icono">🌡️</span>
+          <span class="dato-icono">
+            🌡️
+          </span>
 
           <div>
 
@@ -138,9 +158,12 @@
 
         </div>
 
+
         <div class="dato">
 
-          <span class="dato-icono">💨</span>
+          <span class="dato-icono">
+            💨
+          </span>
 
           <div>
 
@@ -149,16 +172,19 @@
             </span>
 
             <strong>
-              {{ c.current.wind_speed_10m }} km/h
+              {{ c.current.wind_speed_10m | number:'1.0-1' }} km/h
             </strong>
 
           </div>
 
         </div>
 
+
         <div class="dato">
 
-          <span class="dato-icono">🌧️</span>
+          <span class="dato-icono">
+            🌧️
+          </span>
 
           <div>
 
@@ -167,7 +193,7 @@
             </span>
 
             <strong>
-              {{ c.current.precipitation }} mm
+              {{ c.current.precipitation | number:'1.0-1' }} mm
             </strong>
 
           </div>
